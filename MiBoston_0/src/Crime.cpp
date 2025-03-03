@@ -157,18 +157,30 @@ std::string Crime::toString() const {
 }
 
 void Crime::setCounter(int c) {
+    
+    _counter = c;
 }
 
 void Crime::setId(const std::string &id) {
+    
+    
+    _id = id;
+}
 }
 
 void Crime::setCode(const std::string &code) {
+    
+    _code = code;
 }
 
 void Crime::setGroup(const std::string &group) {
+    
+    _group = group;
 }
 
 void Crime::setDescription(const std::string &description) {
+    
+    _description = description;
 }
 
 void Crime::setDistrict(const std::string &district) {
