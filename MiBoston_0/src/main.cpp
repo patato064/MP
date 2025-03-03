@@ -56,33 +56,76 @@ Crimes within the given geographic area:
 int main(int argc, char* argv[]) {
     const int DIM_ARRAY = 10; // dimension of the array arrayCrimes
     Crime arrayCrimes[DIM_ARRAY]; // array of Crimes
+    //Contador para el numero de crimenes que se guardan en el array
+    int countCrimes = 0; 
  
     // Read latitude and longitude for 2 Coordinates objects
     //Aqui hay que leer dos objetos coordenadas
     
     float latitude_min, longitude_min, latitude_max, longitude_max;
-    cin >> latitude1;
-    cin >> longitude1;
+    cin >> latitude_min;
+    cin >> longitude_min;
     Coordinates coord_min(latitude_min, longitude_min);
-    cin >> latitude2;
-    cin >> longitude2;
+    cin >> latitude_max;
+    cin >> longitude_max;
     Coordinates coord_max(latitude_max, longitude_max);
+    
+    //Usamos el cin.ignore para eliminar el /n
+    cin.ignore();
     
     
     // Remember to take off the \n character after longitude of max Coordinates
     // Read 2 DateTime objects
+    string date_min, date_max;
+    //Leemos las fechas minimas y maximas que se tendran en cuenta
+    getline(cin, date_min);
+    getline(cin, date_max);
+    
+    //Creamos los objetos en la clase DateTime
+    DateTime dt_min(date_min);
+    DateTime dt_max(date_max);
     
 
     // Read the number of crimes
-    // Remember to take off the \n character after number of crimes 
+    // Remember to take off the \n character after number of crimes
+    int num_crimes;
+    cin >> num_crimes;
+    
+    //Usamos el cin.ignore para eliminar el /n
+    cin.ignore();
     
     // Read the Crimes and put them in the array arrayCrimes
     //    whenever they follow the required restrictions and 
     //    once normalized
+    for(int i = 0; i < num_crimes; i++){
+        string crime_line;
+        //Leemos el string crime_line y lo convertimos en un objeto
+        // de la clase Crime
+        getline(cin, crime_line);
+        Crime crime(crime_line);
+         
+        if(crime.getDateTime() >= dt_min && crime.getDateTime() <= dt_max && crime.getLocation().isValid()){
+            if(countCrimes < DIM_ARRAY){
+                Normalize(crime);
+                arrayCrimes[countCrimes] = crime;
+                countCrimes++;
+            }
+        }
+    }
 
-    cout << "Total number of crimes inserted in the array: ";
+    cout << "Total number of crimes inserted in the array: " << countCrimes << endl;
+    for (int i = 0; i < countCrimes; i++){
+        cout << arrayCrimes[i].toString() << endl;
+    }
     // display the number and the current content for the arrayCrimes
   
     cout << "\nCrimes within the given geographic area:" << endl;
     // display all the Crimes in the array which Coordinates are inside the given area
+    for (int i = 0; i < countCrimes; i++){
+        if (arrayCrimes[i].getLocation().isInsideArea(coord_min, coord_max)){
+            cout << arrayCrimes[i].toString() << endl;
+        }
+    }
+    
+    return 0;
 }
