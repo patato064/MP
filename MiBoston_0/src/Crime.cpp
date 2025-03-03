@@ -184,6 +184,8 @@ void Crime::setDescription(const std::string &description) {
 }
 
 void Crime::setDistrict(const std::string &district) {
+    
+    _district = district;
 }
 
 void Crime::setAreaReport(const std::string &areaReport) {
