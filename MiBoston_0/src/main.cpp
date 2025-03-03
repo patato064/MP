@@ -58,9 +58,20 @@ int main(int argc, char* argv[]) {
     Crime arrayCrimes[DIM_ARRAY]; // array of Crimes
  
     // Read latitude and longitude for 2 Coordinates objects
+    //Aqui hay que leer dos objetos coordenadas
+    
+    float latitude_min, longitude_min, latitude_max, longitude_max;
+    cin >> latitude1;
+    cin >> longitude1;
+    Coordinates coord_min(latitude_min, longitude_min);
+    cin >> latitude2;
+    cin >> longitude2;
+    Coordinates coord_max(latitude_max, longitude_max);
+    
     
     // Remember to take off the \n character after longitude of max Coordinates
     // Read 2 DateTime objects
+    
 
     // Read the number of crimes
     // Remember to take off the \n character after number of crimes 
