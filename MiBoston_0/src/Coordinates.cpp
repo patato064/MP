@@ -10,6 +10,7 @@
  */
 
 #include "Coordinates.h"
+#include <cmath>
 
 const float Coordinates::INVALID_COORDINATE=181.0;
 
@@ -39,7 +40,6 @@ bool Coordinates::isValid() const {
         
         es_valido = false;
         }
-    }
     
     return es_valido;
 }
@@ -62,8 +62,7 @@ void Coordinates::setLongitude(float longitude) {
 
 std::string Coordinates::toString() const {
     
-    string coords = "(" + to_string(_latitude) 
-                    + ", " to_string(_longitude) + ")";
+    string coords = "(" + to_string(_latitude) + ", " + to_string(_longitude) + ")";
     return coords;
 }
 
@@ -87,7 +86,7 @@ bool Coordinates::isInsideArea(const Coordinates &bottomLeft, const Coordinates 
             _longitude >= bottomLeft.getLongitude() &&
             _longitude <= topRight.getLongitude()){
         
-        esta_dentro == true;
+        esta_dentro = true;
     }
     
     return esta_dentro;

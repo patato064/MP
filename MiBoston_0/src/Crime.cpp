@@ -117,6 +117,14 @@ bool Crime::isIDUnknown() const {
 
 
 std::string Crime::toString() const {
+    
+    
+    string crimen = (to_string(_counter) + _id + "," + _code + "," +
+        _group + "," + _description + "," + _district + "," + _areaReport +
+         + "," to_string(shooting) + "," + toString(dateTime) + "," +
+        _street + "," + toString(_location));
+    
+    return crimen;
 }
 
 void Crime::setCounter(int c) {
