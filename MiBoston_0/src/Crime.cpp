@@ -119,10 +119,10 @@ bool Crime::isIDUnknown() const {
 std::string Crime::toString() const {
     
     
-    string crimen = (to_string(_counter) + _id + "," + _code + "," +
+    string crimen = to_string(_counter) + _id + "," + _code + "," +
         _group + "," + _description + "," + _district + "," + _areaReport +
-         + "," to_string(shooting) + "," + toString(dateTime) + "," +
-        _street + "," + toString(_location));
+          "," + to_string(_shooting) + "," + _dateTime.toString() + "," +
+        _street + "," + _location.toString();
     
     return crimen;
 }
@@ -137,7 +137,7 @@ void Crime::setId(const std::string &id) {
     
     _id = id;
 }
-}
+
 
 void Crime::setCode(const std::string &code) {
     
@@ -245,7 +245,7 @@ void Trim(string & myString) {
     // Eliminar espacios y tabulaciones al principio
     
     size_t start = 0;
-    whiles (start < myString.length() && isspace(myString)) start++;
+    while (start < myString.length() && isspace(myString.at(start))) start++;
     
     // Eliminar espacios y tabulaciones al final
     
@@ -260,8 +260,9 @@ void Trim(string & myString) {
 void Capitalize(string & myString) {
     
     string nueva;
+    int longitud = myString.length();
     
-    for (int i = 0; i < myString.length(); i++){
+    for (int i = 0; i < longitud; i++){
         
         nueva += toupper(myString.at(i));
     }
@@ -271,19 +272,39 @@ void Capitalize(string & myString) {
 
 void Normalize(Crime & crime) {
     
-    Capitalize (_id);
-    Capitalize (_group);
-    Capitalize (_description);
-    Capitalize (_district);
-    Capitalize (_street);
-    Capitalize (_code);
-    Capitalize (_areaReport);
+    string id = crime.getId();
+    Capitalize (id);
+    Trim(id);
+    crime.setId(id);
     
-    Trim (_id);
-    Trim (_group);
-    Trim (_description);
-    Trim (_district);
-    Trim (_street);
-    Trim (_code);
-    Trim (_areaReport);
+    string group = crime.getGroup();
+    Capitalize (group);
+    Trim(group);
+    crime.setGroup(group);
+    
+    string description = crime.getDescription();
+    Capitalize (description);
+    Trim(description);
+    crime.setDescription(description);
+    
+    string district = crime.getDistrict();
+    Capitalize (district);
+    Trim(district);
+    crime.setDistrict(district);
+    
+    string street = crime.getStreet();
+    Capitalize (street);
+    Trim(street);
+    crime.setStreet(street);
+    
+    string code = crime.getCode();
+    Capitalize (code);
+    Trim(code);
+    crime.setCode(code);
+    
+    string areareport = crime.getAreaReport();
+    Capitalize (areareport);
+    Trim(areareport);
+    crime.setAreaReport(areareport);
+    
 }
