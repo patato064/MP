@@ -10,6 +10,7 @@
  */
 
 #include "Crime.h"
+#include <cctype>
 
 using namespace std;
 
@@ -41,46 +42,8 @@ Crime::Crime() {
 
 
 Crime::Crime(const string &line) {
-
-    int i = 0;
-    int k = 0;
     
-    const int MAX_VALORES = 20;
-    
-    string valores[MAX_VALORES];
-    
-    // Convertimos la string total en un vector de strings que contienen
-    // individualmente los datos a rellenar
-    
-    while (i < line.length()){
-        
-        int j = i;
-        
-        while (j < line.length() && line.at(j + 1) != ';') {
-            
-            j++;
-        }
-        
-        line.substr(i,j) = valores[k];
-        k++;
-        
-        i = j + 2;
-    }
-    
-    // Ahora asignamos cada valor a su correspondiente dato miembro de la clase
-    
-    _counter = stoi(valores[0]);
-    if (!valores[1].empty()) _id = valores[1];
-    _code = valores[2];
-    _group = valores[3];
-    _description = valores[4];
-    _district = valores[5];
-    _areaReport = valores[6];
-    bool _shooting = stoi(valores[7]);
-    _dateTime = DateTime(valores[8]); 
-    _street = valores[9];
-    _location = Coordinates(stod(valores[10]), stod(valores[11]));
-    
+    set(line);
 }
 
 
@@ -189,18 +152,28 @@ void Crime::setDistrict(const std::string &district) {
 }
 
 void Crime::setAreaReport(const std::string &areaReport) {
+    
+    _areaReport = areaReport;
 }
 
 void Crime::setStreet(const std::string &street) {
+    
+    _street = street;
 }
 
 void Crime::setShooting(bool shooting) {
+    
+    _shooting = shooting;
 }
 
 void Crime::setDateTime(const string & time) {
+    
+    _dateTime = time;
 }
 
 void Crime::setLocation(const Coordinates & coordinates) {
+    
+    _location = coordinates;
 }
 
 void Crime::set(const std::string & line) {
@@ -208,6 +181,8 @@ void Crime::set(const std::string & line) {
     string data;        //piece of data detached from line;
     size_t pos, posn;   // aux for the beginning of the fields
  
+    Coordinates coords;
+    
     pos = 0;
     posn = line.find(',', pos); // beginning of the next field
     for (int nfield = 0; nfield < NFIELDS - 1 && posn != string::npos; nfield++) {
@@ -231,16 +206,76 @@ void Crime::set(const std::string & line) {
                 setDescription(data);
                 break;
             case 5: // District alphaNumeric
-                ...
-        }
-  ...
+                setDistrict(data);
+                break;
+            case 6: // Area Report
+                setAreaReport(data);
+                break;
+            case 7: // Shooting
+                setShooting(stoi(data));
+                break;
+            case 8: // DateTime
+                setDateTime(data);
+                break;
+            case 9: // Street
+                setStreet(data);
+                break;
+            case 10: // Latitude
+                coords.setLatitude(stod(data));
+                break;
+            case 11: // Longitude & Location
+                coords.setLongitude(stod(data));
+                setLocation(coords);
+                break;
+                
+        } // switch
+    } // for
 } //end of set()
 
 void Trim(string & myString) {
+    
+    // Eliminar espacios y tabulaciones al principio
+    
+    size_t start = 0;
+    whiles (start < myString.length() && isspace(myString)) start++;
+    
+    // Eliminar espacios y tabulaciones al final
+    
+    size_t end = myString.length();
+    while (end > start && isspace(myString[end-1])) end--;
+    
+    // Crear subcadena que contenga solo los caracteres relevantes
+    
+    myString = myString.substr(start, end - start);
 }
 
 void Capitalize(string & myString) {
+    
+    string nueva;
+    
+    for (int i = 0; i < myString.length(); i++){
+        
+        nueva += toupper(myString.at(i));
+    }
+    
+    myString = nueva;
 }
 
 void Normalize(Crime & crime) {
+    
+    Capitalize (_id);
+    Capitalize (_group);
+    Capitalize (_description);
+    Capitalize (_district);
+    Capitalize (_street);
+    Capitalize (_code);
+    Capitalize (_areaReport);
+    
+    Trim (_id);
+    Trim (_group);
+    Trim (_description);
+    Trim (_district);
+    Trim (_street);
+    Trim (_code);
+    Trim (_areaReport);
 }
