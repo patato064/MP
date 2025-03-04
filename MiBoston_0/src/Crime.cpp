@@ -237,7 +237,19 @@ void Crime::set(const std::string & line) {
                 break;
                 
         } // switch
+        
+        posn = line.find(',', pos); // Actualizar posn en cada iteración
+        
+        
     } // for
+        coords.setLatitude(stod(data));
+        
+         posn = line.find(',', pos);
+      
+        coords.setLongitude(stod(data));
+        setLocation(coords);
+
+    
 } //end of set()
 
 void Trim(string & myString) {
