@@ -119,7 +119,7 @@ bool Crime::isIDUnknown() const {
 std::string Crime::toString() const {
     
     
-    string crimen = to_string(_counter) + "," + _id + "," + _code + "," +
+    string crimen = to_string(_counter) + "," +_id + "," + _code + "," +
         _group + "," + _description + "," + _district + "," + _areaReport +
           "," + to_string(_shooting) + "," + _dateTime.toString() + "," +
         _street + "," + _location.toString();
@@ -229,12 +229,6 @@ void Crime::set(const std::string & line) {
             case 9: // Street
                 setStreet(data);
                 break;
-            case 10: // Latitude
-                coords.setLatitude(stod(data));
-                break;
-            case 11: // Longitude
-                coords.setLongitude(stod(data));
-                break;
                 
         } // switch
         
@@ -243,8 +237,10 @@ void Crime::set(const std::string & line) {
         coords.setLatitude(stod(data));
         
          posn = line.find(',', pos);
+         data = line.substr(pos, posn - pos);
       
         coords.setLongitude(stod(data));
+                
         setLocation(coords);
 
 } //end of set()

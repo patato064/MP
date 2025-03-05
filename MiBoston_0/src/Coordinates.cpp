@@ -52,13 +52,10 @@ void Coordinates::set(float latitude, float longitude){
     
 void Coordinates::set(std::string coords){
         
-    int pos_punto = coords.find("."); 
-
-    cout << pos_punto;
+    int pos_coma = coords.find(","); 
             
-    float latitude = stod(coords.substr(0, pos_punto - 1));
-    float longitude = stod(coords.substr(pos_punto + 1, coords.length() -1));
-        
+    float latitude = stod(coords.substr(0, pos_coma - 1));
+    float longitude = stod(coords.substr(pos_coma + 1, coords.length() -1));
         
     set(latitude, longitude);
 }
