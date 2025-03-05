@@ -49,6 +49,19 @@ void Coordinates::set(float latitude, float longitude){
     _latitude = latitude;
     _longitude = longitude;
 }
+    
+void Coordinates::set(std::string coords){
+        
+    int pos_punto = coords.find("."); 
+
+    cout << pos_punto;
+            
+    float latitude = stod(coords.substr(0, pos_punto - 1));
+    float longitude = stod(coords.substr(pos_punto + 1, coords.length() -1));
+        
+        
+    set(latitude, longitude);
+}
 
 void Coordinates::setLatitude(float latitude) {
     

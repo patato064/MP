@@ -112,6 +112,14 @@ public:
      */
     void set(float latitude, float longitude);
 
+    
+    
+    
+    
+    void set(std::string coords);
+    
+    
+    
     /**
      * @brief Obtains a string with the latitude and longitude (comma separated).
      * To convert latitude and longitude to string you must use the

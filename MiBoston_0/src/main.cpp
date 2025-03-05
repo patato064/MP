@@ -62,13 +62,21 @@ int main(int argc, char* argv[]) {
     // Read latitude and longitude for 2 Coordinates objects
     //Aqui hay que leer dos objetos coordenadas
     
-    float latitude_min, longitude_min, latitude_max, longitude_max;
-    cin >> latitude_min;
-    cin >> longitude_min;
-    Coordinates coord_min(latitude_min, longitude_min);
-    cin >> latitude_max;
-    cin >> longitude_max;
-    Coordinates coord_max(latitude_max, longitude_max);
+    
+    string coord_min_str;
+    
+    getline (cin, coord_min_str);
+    
+    Coordinates coord_min;
+    coord_min.set(coord_min_str);
+    
+    
+    string coord_max_str;
+    
+    getline (cin, coord_max_str);
+    
+    Coordinates coord_max;
+    coord_max.set(coord_max_str);
     
     //Usamos el cin.ignore para eliminar el /n
     cin.ignore();
