@@ -72,7 +72,7 @@ void Coordinates::setLongitude(float longitude) {
 
 std::string Coordinates::toString() const {
     
-    string coords = "(" + to_string(_latitude) + ", " + to_string(_longitude) + ")";
+    string coords = to_string(_latitude) + "," + to_string(_longitude);
     return coords;
 }
 
