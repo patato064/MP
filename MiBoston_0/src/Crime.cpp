@@ -133,9 +133,14 @@ void Crime::setCounter(int c) {
 }
 
 void Crime::setId(const std::string &id) {
+    string trimmedId = id;
+    Trim(trimmedId); //quitamos espacios del inicio y el final
+    if (trimmedId.size() == 0){
+        //primero describimos donde se da el error y luego describimos el error
+        throw std::invalid_argument(std::string("void Crime::setId(const std::string &id): ") + "id esta vacio");
+    }
     
-    
-    _id = id;
+    this->_id = trimmedId;
 }
 
 
