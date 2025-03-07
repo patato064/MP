@@ -137,7 +137,9 @@ void Crime::setId(const std::string &id) {
     Trim(trimmedId); //quitamos espacios del inicio y el final
     if (trimmedId.size() == 0){
         //primero describimos donde se da el error y luego describimos el error
-        throw std::invalid_argument(std::string("void Crime::setId(const std::string &id): ") + "id esta vacio");
+        throw std::invalid_argument(
+                std::string("void Crime::setId(const std::string &id): ") + 
+                "id esta vacio");
     }
     
     this->_id = trimmedId;
