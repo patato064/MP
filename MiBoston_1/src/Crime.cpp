@@ -254,6 +254,52 @@ void Crime::set(const std::string & line) {
 
 
 string Crime::getField(const string & field) const{
+    
+    string devolver;
+    
+    switch(field){
+        case("Counter"):
+            devolver = to_string(_counter);
+            break;
+        case("ID"):
+            devolver = _id;
+            break;
+        case("Code"):
+            devolver = _code;
+            break;
+        case("Group"):
+            devolver = _group;
+            break;
+        case("Description"):
+            devolver = _description;
+            break;
+        case("District"):
+            devolver = _district;
+            break;
+        case("Area"):
+            devolver = _areaReport;
+            break;
+        case("Street"):
+            devolver = _street;
+            break;
+        case("Shooting"):
+            devolver = to_string(_shooting);
+            break;
+        case("DateTime"):
+            devolver = _datetime.ToString();
+            break;
+        case("Location"):
+            devolver = _location.ToString();
+            break;
+            
+        default:
+            throw std::invalid_argument(
+                std::string("string Crime::getField(const string & field) const: ") + 
+                "El argumento introducido no se corresponde a un campo existente");
+    }
+        
+    return devolver;
+    
 }
 
 void Crime::normalize() {
