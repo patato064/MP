@@ -124,6 +124,7 @@ int main(int argc, char* argv[]) {
 
     // Read a name and a value for one of the fields of a Crime 
     // Remember to take off the character \n at the end of previous value
+    
     // Read number n to define the number of Crime objects
     // Remember to take off the character \n after previous number 
    

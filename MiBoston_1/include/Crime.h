@@ -373,7 +373,7 @@ public:
      * @throw invalid_argument exception if the label of the field is not valid
      * @return a string with the value of the selected field of the object. 
      */
-    std::string getField(std::string field);
+    std::string getField(std::const string & field) const;
 
     /**
      * @brief Normalizes every string field in this Crime object. That is: 

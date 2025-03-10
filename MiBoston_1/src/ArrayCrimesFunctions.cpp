@@ -13,10 +13,10 @@
 
 using namespace std;
 
-void InitializeArrayInts(int array[], int size) {
+void InitializeArrayInts(int array[], int const & size) {
 }
 
-void ComputeMaxPosArrayInts(int array[], int size, int max, int posMax) {
+void ComputeMaxPosArrayInts(int array[], int const & size, int & max, int & posMax) {
 }
 
 void PrintHistogramArrayCrimes(int dataField, int histogram[]) {

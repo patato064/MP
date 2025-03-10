@@ -19,7 +19,7 @@
  * @param array Array of integers. Output parameter
  * @param size Size of the array @p array. Input parameter
  */
-void InitializeArrayInts(int array[], int size);
+void InitializeArrayInts(int array[], int const & size);
 
 /**
  * @brief Obtains the maximum value and its position (index) in the
@@ -29,7 +29,7 @@ void InitializeArrayInts(int array[], int size);
  * @param max The maximum value found in the vector. Output parameter
  * @param posMax The position in the array of the value with the maximun. Output parameter
  */
-void ComputeMaxPosArrayInts(int array[], int size, int max, int posMax);
+void ComputeMaxPosArrayInts(int array[], int const & size, int & max, int & posMax);
 
 /**
  * @brief Displays the provided histogram (cumulative frequencies of crimes 
