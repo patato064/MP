@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=boston1teacher
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/boston1teacher
+CND_ARTIFACT_NAME_Debug=miboston_1
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/miboston_1
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=boston1teacher.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/boston1teacher.tar
+CND_PACKAGE_NAME_Debug=miboston1.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/miboston1.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=boston1teacher
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/boston1teacher
+CND_ARTIFACT_NAME_Release=miboston_1
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/miboston_1
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=boston1teacher.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/boston1teacher.tar
+CND_PACKAGE_NAME_Release=miboston1.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/miboston1.tar
 #
 # include compiler specific variables
 #

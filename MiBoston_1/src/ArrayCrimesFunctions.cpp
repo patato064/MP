@@ -14,9 +14,28 @@
 using namespace std;
 
 void InitializeArrayInts(int array[], int const & size) {
+    
+    for (int i = 0; i < size; i++){
+        
+        array[i] = 0;
+    }
 }
 
 void ComputeMaxPosArrayInts(int array[], int const & size, int & max, int & posMax) {
+    
+    max = array[0]
+    
+    if (size > 1){
+        for (int i = 1; i < size; i++){
+
+            if (array[i]) > max){
+                
+                max = array[i];
+                posMax = i
+            }
+        }
+    }
+    
 }
 
 void PrintHistogramArrayCrimes(int dataField, int histogram[]) {
