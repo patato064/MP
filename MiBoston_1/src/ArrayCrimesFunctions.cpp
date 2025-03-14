@@ -42,6 +42,12 @@ void PrintHistogramArrayCrimes(int dataField, int histogram[]) {
 }
 
 void PrintArrayCrimes(Crime crimes[], int nCrimes) {
+    
+    for (int i = 0; i < nCrimes; i++){
+        
+        cout << crimes[i].toString() << endl;
+        
+    }
 }
 
 int PosMinArrayCrimes(Crime array[], int initialPos, int finalPos) {
@@ -49,6 +55,18 @@ int PosMinArrayCrimes(Crime array[], int initialPos, int finalPos) {
 
 void SwapElementsArrayCrimes(Crime array[], int nElements, int first,
         int second) {
+    
+    if (0 > first || first >= nElements || 0 > second || second >= nElements){
+        
+        throw std::out_of_range(
+                std::string("void SwapElementsArrayCrimes(Crime array[], int nElements, int first, int second): ")
+                + "elemento fuera del array")
+    }
+    
+    Crime cambiar = array[second];
+    
+    array[second] = array[first];
+    array[first] = cambiar;
 }
 
 void SortArrayCrimes(Crime array[], int nElements) {
