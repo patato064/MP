@@ -173,5 +173,17 @@ void ComputeHistogramArrayCrimes(const Crime crimes[], int nCrimes,
 void SelectWhereEQArrayCrimes(const Crime inputCrimes[], int inputCrimesSize, 
     const string  field, const string value, Crime outputCrimes[], 
     int & outputCrimesSize) {
+    
+    int j = 0;
+    
+    for (int i = 0; i < inputCrimesSize; i++){
+        if (inputCrimes[i].getField(field) == value){
+            
+            if (j < outputCrimesSize){
+                outputCrimes[j] = inputCrimes[i];
+                j++;
+            }
+        }
+    }
 }
 
