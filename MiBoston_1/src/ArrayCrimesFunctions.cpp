@@ -121,19 +121,53 @@ int FindCrimeInArrayCrimes(const Crime array[], const Crime & crime,
     //REVISAR SI EL ID ES UN ENTERO O UN STRING
     string id = crime.getId();
     int pos = initialPos;
+    bool no_encontrado = true;
     
-    while(pos <= finalPos){
+    while(pos <= finalPos && no_encontrado){
         if(id == array[pos].getId()){
-            return pos;
+            no_encontrado = false;
         }
-        pos++;
+        if (no_encontrado) pos++;
     }
     
-    return -1;
+    if (no_encontrado) pos = -1;
+    
+    return pos;
 }
 
 void ComputeHistogramArrayCrimes(const Crime crimes[], int nCrimes,
         int dataField, int histogram[]) {
+    
+    if (dataField != 0 || dataField != 1){
+        
+        throw std::out_of_range(
+                std::string("void ComputeHistogramArrayCrimes(const Crime crimes[], int nCrimes, int dataField, int &histogram[])")
+                + "dataField distinto de 0 o 1");
+    }
+    
+    int num_datos = (dataField == 0)? 7 : 24;
+   
+    InitializeArrayInts(histogram, num_datos);
+    
+    for (int i = 0; i < num_datos; i++){
+        
+        if (dataField == 0){
+            for (int j = 0; j < nCrimes; j++){
+              
+                if (crimes[j].getDateTime().weekDay() == i);
+                histogram[i]++;
+            }
+        }
+        else{
+            for (int k = 0; k < nCrimes; k++){
+              
+                if (crimes[k].getDateTime().hour() == i);
+                histogram[i]++;
+            }
+            
+        }
+             
+    }
 }
 
 void SelectWhereEQArrayCrimes(const Crime inputCrimes[], int inputCrimesSize, 

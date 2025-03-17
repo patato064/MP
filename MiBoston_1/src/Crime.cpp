@@ -37,13 +37,13 @@ const string Crime::CRIME_DEFAULT("0," + UNKNOWN_VALUE + "," + UNKNOWN_VALUE + "
 
 Crime::Crime() {
     
-    Crime (Crime::CRIME_DEFAULT);
+    set (CRIME_DEFAULT);
 }
 
 
 Crime::Crime(const string &line) {
     
-    set(line);
+    set (line);
 }
 
 
