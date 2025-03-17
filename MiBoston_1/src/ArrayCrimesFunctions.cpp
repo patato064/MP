@@ -39,6 +39,24 @@ void ComputeMaxPosArrayInts(const int array[], int const & size, int & max, int 
 }
 
 void PrintHistogramArrayCrimes(int dataField, const int histogram[]) {
+    
+    if (dataField == 0){
+        
+        for (int i = 0; i < 6; i++){
+            
+            cout << DateTime::dayName(i) << " " << histogram[i];
+        }
+        
+    }
+    
+    if (dataField == 1){
+        
+        for (int i = 0; i < 23; i++){
+            
+            cout << i << " " << histogram[i];
+        }
+    }
+        
 }
 
 void PrintArrayCrimes(const Crime crimes[], int nCrimes) {
@@ -89,6 +107,12 @@ void SwapElementsArrayCrimes(Crime array[], int nElements, int first,
 }
 
 void SortArrayCrimes(Crime array[], int nElements) {
+    
+    for (int i = 0; i < nElements; i++){
+        
+        int pos_min = PosMinArrayCrimes(array, i, nElements-1);
+        SwapElementsArrayCrimes(array, nElements, i, pos_min);
+    }
 }
 
 int FindCrimeInArrayCrimes(const Crime array[], const Crime & crime,
