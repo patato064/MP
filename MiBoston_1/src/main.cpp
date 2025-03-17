@@ -3,10 +3,10 @@
  * Curso 2024/2025
  */
 
-/** 
+/**
  * @file   main.cpp
  * @author estudiante1: Salvador Gil, Sergio
- * @author estudiante2: Gil Casado, Néstor Eloy 
+ * @author estudiante2: Gil Casado, Néstor Eloy
  *  
  * Last modified on February 12, 20245, 20:13 PM
  */
@@ -21,7 +21,7 @@
 using namespace std;
 
 /**
- * The purpose of this program is to read a set of data on crimes committed 
+ * The purpose of this program is to read a set of data on crimes committed
  * in the city of Boston, showing some statistics about them.
  * This program first reads from the standard input a name and a value for one of
  * the fields of a Crime (this will be used later to select the crimes with
@@ -29,25 +29,25 @@ using namespace std;
  * Then it reads an integer number n to define the number of Crime objects to
  * read.
  * Thereafter, it reads n Crime objects, normalizing and storing each one
- * in the array inputCrimes only if the ID of the normalized crime is not 
- * unknown and there is not already a crime in the array inputCrimes with the 
+ * in the array inputCrimes only if the ID of the normalized crime is not
+ * unknown and there is not already a crime in the array inputCrimes with the
  * same ID (the array cannot contains two crimes with the same ID).
- * Be careful that the number of crimes inserted in the array does not exceed 
+ * Be careful that the number of crimes inserted in the array does not exceed
  * its capacity.
  * Next, the program shows in the standard output all the Crimes in the array
  * Hereafter, it computes and shows the histograms by day of the week and
  * by hour of the day.
- * Subsequently, it computes and shows the maximum cumulative number of crimes 
+ * Subsequently, it computes and shows the maximum cumulative number of crimes
  * in a week day and the maximum cumulative number of crimes in a  day hour.
- * Finally the program computes, sorts and shows an array with those Crimes 
- * that verify the condition that the previously provided field is equals to 
+ * Finally the program computes, sorts and shows an array with those Crimes
+ * that verify the condition that the previously provided field is equals to
  * the given value.
  * Be careful to show the output as in the below example.
- * 
+ *
  * Running example:
  * > dist/Debug/GNU-Linux/boston1 < data/crimes22.b1in
 Records read: 22
-20 crimes with valid and non-repeated ID: 
+20 crimes with valid and non-repeated ID:
 0,225520077,3126,UNKNOWN,WARRANT ARREST - OUTSIDE OF BOSTON WARRANT,D14,786,0,2022-02-02 00:00:00,WASHINGTON ST,42.343082,-71.141724
 2,222201764,724,UNKNOWN,AUTO THEFT,C6,200,0,2022-01-09 00:00:00,W BROADWAY,42.341286,-71.054680
 3,222201559,301,UNKNOWN,ROBBERY,D4,UNKNOWN,0,2022-03-05 13:00:00,ALBANY ST,42.333183,-71.073936
@@ -116,56 +116,91 @@ Sorted list of selected crimes where Code=619:
  */
 int main(int argc, char* argv[]) {
     const int DIM_ARRAY = 200; // capacity of the two arrays of crimes
-    Crime inputCrimes[DIM_ARRAY], // array of crimes read from the standard input 
+    Crime inputCrimes[DIM_ARRAY], // array of crimes read from the standard input
         selectedCrimes[DIM_ARRAY]; // array of crimes that verify a given condition
  
     int frequencyByDay[7]; // array to save the cumulative number of crimes (histogram) for every week day
     int frequencyByHour[24]; // array to save the cumulative number of crimes (histogram) for every hour
-
-    // Read a name and a value for one of the fields of a Crime 
+    //Variable para contabilizar los crimenes que son seleccionados al cumplir las condiciones
+    int count_selected_crimes = 0;
+    // Read a name and a value for one of the fields of a Crime
     // Remember to take off the character \n at the end of previous value
-    
+   
+    string field;
+    string value;
+    cin >> field;
+    cin.ignore();
+    cin >> value;
+   
     // Read number n to define the number of Crime objects
-    // Remember to take off the character \n after previous number 
+    // Remember to take off the character \n after previous number
+    int num_crimes;
+    cin >> num_crimes;
+   
+    cin.ignore();
    
     // Loop to read n Crime objects
         // Read a Crime object, normalize and insert it in the array
-        //     if its ID is not unknown and there is not any crime 
+        //     if its ID is not unknown and there is not any crime
         //     in the array with identical ID
    
-    
-    cout << "Records read: " << ... << endl;
-    cout << ... << " crimes with valid and non-repeated ID: " << endl;
+    for(int i = 0; i < num_crimes; i++){
+        string crime_line;
+       
+        getline(cin,crime_line);
+        Crime crime(crime_line);
+        inputCrimes[i] = crime;
+       
+        if(!crime.isIDUnknown() && crime.getId() /*algo mas que compruebe que no hay otro con el mismo ID*/ ){
+            if(count_selected_crimes < DIM_ARRAY){
+                Normalize(crime);
+                selectedCrimes[count_selected_crimes] = crime;
+                count_selected_crimes++;
+            }
+        }
+    }
+   
+   
+    cout << "Records read: " << num_crimes << endl;
+    cout << count_selected_crimes << " crimes with valid and non-repeated ID: " << endl;
     // Show all the Crimes in the array
-    
+    PrintArrayCrimes(selectedCrimes[],count_selected_crimes);
+   
     // Compute the histograms by day of the week and
     //    by hour of the day.
-            
+    int data_field_horas = 0;
+    int data_field_dias = 1;
+   
+   
     // Show the histograms by day of the week and
     //    by hour of the day.
     cout << "\nHistogram by day of the week:" << endl;
-
+    ComputeHistogramArrayCrimes(selectedCrimes, count_selected_crimes, data_field_dias, frequencyByDay[]);
+    PrintHistogramArrayCrimes(data_field_dias, frequencyByDay[]);
+   
     cout << "\nHistogram by hour of the day:" << endl;
+    ComputeHistogramArrayCrimes(selectedCrimes, count_selected_crimes, data_field_horas, frequencyByHour[]);
+    PrintHistogramArrayCrimes(data_field_horas, frequencyByHour[]);
 
-    // Compute the maximum cumulative number of crimes in a week day 
+    // Compute the maximum cumulative number of crimes in a week day
     //    and the maximum cumulative number of crimes in a day hour.
    
-    // Show the maximum cumulative number of crimes in a week day 
+    // Show the maximum cumulative number of crimes in a week day
     //    and the maximum cumulative number of crimes in a  day hour.
-    cout << "\nMaximum cumulative number of crimes in a week day: " << ... 
+    cout << "\nMaximum cumulative number of crimes in a week day: " << ...
             << endl;
-    cout << "Day of maximum cumulative number of crimes in a week day: " << 
+    cout << "Day of maximum cumulative number of crimes in a week day: " <<
             ... << endl;
-    cout << "Maximum cumulative number of crimes in a day hour: " << ... 
+    cout << "Maximum cumulative number of crimes in a day hour: " << ...
             << endl;
-    cout << "Hour of maximum cumulative number of crimes in a day hour: " << 
+    cout << "Hour of maximum cumulative number of crimes in a day hour: " <<
             ... << endl;
-    
-    // Compute and sort an array with those Crimes 
-    //    that verify the condition that the read field is equals to 
+   
+    // Compute and sort an array with those Crimes
+    //    that verify the condition that the read field is equals to
     //    the given value.
-    cout << "\nSorted list of selected crimes where " << .. << "=" << 
-            .. << ":" << endl<<endl;
-    
+    cout << "\nSorted list of selected crimes where " << field << "=" <<
+            value << ":" << endl<<endl;
     // Show the array content
+   
 }
