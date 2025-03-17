@@ -29,7 +29,7 @@ void InitializeArrayInts(int array[], int const & size);
  * @param max The maximum value found in the vector. Output parameter
  * @param posMax The position in the array of the value with the maximun. Output parameter
  */
-void ComputeMaxPosArrayInts(int array[], int const & size, int & max, int & posMax);
+void ComputeMaxPosArrayInts(const int array[], int const & size, int & max, int & posMax);
 
 /**
  * @brief Displays the provided histogram (cumulative frequencies of crimes 
@@ -67,7 +67,7 @@ SATURDAY 32
  * @param histogram histogram with cumulative frequencies by day of the week 
  * or hour of the day. Input parameter
  */
-void PrintHistogramArrayCrimes(int dataField, int histogram[]);
+void PrintHistogramArrayCrimes(int dataField, const int histogram[]);
 
 /** 
  * @brief Displays the content of the provided array of Crimes on the standard 
@@ -76,7 +76,7 @@ void PrintHistogramArrayCrimes(int dataField, int histogram[]);
  * @param crimes array of Crimes. Input parameter
  * @param nCrimes number of crimes in the array. Input parameter
  */
-void PrintArrayCrimes(Crime crimes[], int nCrimes);
+void PrintArrayCrimes(const Crime crimes[], int nCrimes);
 
 /**
  * @brief Finds the position of the element with the minimum crime in the
@@ -92,7 +92,7 @@ void PrintArrayCrimes(Crime crimes[], int nCrimes);
  * that begins at position @p initialPos and ends at position @p finalPos 
  * (both included). If no element can be retrieved, it returns -1
 */
-int PosMinArrayCrimes(Crime array[], int initialPos, int finalPos);
+int PosMinArrayCrimes(const Crime array[], int initialPos, int finalPos);
 
 /**
  * @brief Swaps the elements at positions @p first and @p second in the given
@@ -131,7 +131,7 @@ void SortArrayCrimes(Crime array[], int nElements);
  * @p array that begins at position @p initialPos and ends at position @p finalPos 
  * (both included). If the given Crime is not found, then -1 is returned.
  */
-int FindCrimeInArrayCrimes(Crime array[], Crime crime,
+int FindCrimeInArrayCrimes(const Crime array[], const Crime & crime,
         int initialPos, int finalPos);
 
 /**
@@ -152,7 +152,7 @@ int FindCrimeInArrayCrimes(Crime array[], Crime crime,
  * @param histogram output array where the cumulative frequencies will be saved. 
  * Input/output parameter
  */
-void ComputeHistogramArrayCrimes(Crime crimes[], int nCrimes, 
+void ComputeHistogramArrayCrimes(const Crime crimes[], int nCrimes, 
         int dataField, int histogram[]);
 
 /**
@@ -175,9 +175,9 @@ void ComputeHistogramArrayCrimes(Crime crimes[], int nCrimes,
  * Output parameter
  * @param outputCrimesSize Size of the array @p outputCrimes. Output parameter
  */
-void SelectWhereEQArrayCrimes(Crime inputCrimes[], int  inputCrimesSize, 
-        std::string  field, std::string value,  
-        Crime outputCrimes[], int outputCrimesSize);
+void SelectWhereEQArrayCrimes(const Crime inputCrimes[], int  inputCrimesSize, 
+        const std::string  field, const std::string value,  
+        Crime outputCrimes[], int & outputCrimesSize);
 
 #endif /* ARRAYCRIMESFUNCTIONS_H */
 

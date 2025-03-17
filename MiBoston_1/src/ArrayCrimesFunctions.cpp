@@ -21,27 +21,27 @@ void InitializeArrayInts(int array[], int const & size) {
     }
 }
 
-void ComputeMaxPosArrayInts(int array[], int const & size, int & max, int & posMax) {
+void ComputeMaxPosArrayInts(const int array[], int const & size, int & max, int & posMax) {
     
-    max = array[0]
+    max = array[0];
     
     if (size > 1){
         for (int i = 1; i < size; i++){
 
-            if (array[i]) > max){
+            if (array[i] > max){
                 
                 max = array[i];
-                posMax = i
+                posMax = i;
             }
         }
     }
     
 }
 
-void PrintHistogramArrayCrimes(int dataField, int histogram[]) {
+void PrintHistogramArrayCrimes(int dataField, const int histogram[]) {
 }
 
-void PrintArrayCrimes(Crime crimes[], int nCrimes) {
+void PrintArrayCrimes(const Crime crimes[], int nCrimes) {
     
     for (int i = 0; i < nCrimes; i++){
         
@@ -50,7 +50,26 @@ void PrintArrayCrimes(Crime crimes[], int nCrimes) {
     }
 }
 
-int PosMinArrayCrimes(Crime array[], int initialPos, int finalPos) {
+int PosMinArrayCrimes(const Crime array[], int initialPos, int finalPos) {
+    
+    if (initialPos > finalPos){
+        return -1;
+    }
+    
+    int pos_minimo = initialPos;
+    Crime minimo = array[pos_minimo];
+    
+    for(int pos = initialPos++; pos <= finalPos; pos++){
+        
+        if((array[pos].getDateTime() < minimo.getDateTime()) || 
+            (array[pos].getDateTime() == minimo.getDateTime() &&
+             array[pos].getId() < minimo.getId())){
+            minimo = array[pos];
+            pos_minimo = pos;
+        } //if 
+    } //for
+    
+    return pos_minimo;
 }
 
 void SwapElementsArrayCrimes(Crime array[], int nElements, int first,
@@ -60,8 +79,8 @@ void SwapElementsArrayCrimes(Crime array[], int nElements, int first,
         
         throw std::out_of_range(
                 std::string("void SwapElementsArrayCrimes(Crime array[], int nElements, int first, int second): ")
-                + "elemento fuera del array")
-    }
+                + "elemento fuera del array");
+    }   
     
     Crime cambiar = array[second];
     
@@ -72,16 +91,29 @@ void SwapElementsArrayCrimes(Crime array[], int nElements, int first,
 void SortArrayCrimes(Crime array[], int nElements) {
 }
 
-int FindCrimeInArrayCrimes(Crime array[], Crime crime,
+int FindCrimeInArrayCrimes(const Crime array[], const Crime & crime,
         int initialPos, int finalPos) {
+    
+    //REVISAR SI EL ID ES UN ENTERO O UN STRING
+    string id = crime.getId();
+    int pos = initialPos;
+    
+    while(pos <= finalPos){
+        if(id == array[pos].getId()){
+            return pos;
+        }
+        pos++;
+    }
+    
+    return -1;
 }
 
-void ComputeHistogramArrayCrimes(Crime crimes[], int nCrimes,
+void ComputeHistogramArrayCrimes(const Crime crimes[], int nCrimes,
         int dataField, int histogram[]) {
 }
 
-void SelectWhereEQArrayCrimes(Crime inputCrimes[], int inputCrimesSize, 
-    string  field, string value, Crime outputCrimes[], 
-    int outputCrimesSize) {
+void SelectWhereEQArrayCrimes(const Crime inputCrimes[], int inputCrimesSize, 
+    const string  field, const string value, Crime outputCrimes[], 
+    int & outputCrimesSize) {
 }
 

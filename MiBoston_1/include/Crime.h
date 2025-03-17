@@ -373,7 +373,7 @@ public:
      * @throw invalid_argument exception if the label of the field is not valid
      * @return a string with the value of the selected field of the object. 
      */
-    std::string getField(std::const string & field) const;
+    std::string getField(const std:: string &field) const;
 
     /**
      * @brief Normalizes every string field in this Crime object. That is: 
@@ -454,3 +454,5 @@ void Capitalize(std::string & myString);
  * ID cannot contains leading or trailing blanks
  */
 void Normalize(Crime & crime);
+
+#endif //CRIME.H
