@@ -257,60 +257,105 @@ string Crime::getField(const string & field) const{
     
     string devolver;
     
-    switch(field){
-        case("Counter"):
-            devolver = to_string(_counter);
-            break;
-        case("ID"):
-            devolver = _id;
-            break;
-        case("Code"):
-            devolver = _code;
-            break;
-        case("Group"):
-            devolver = _group;
-            break;
-        case("Description"):
-            devolver = _description;
-            break;
-        case("District"):
-            devolver = _district;
-            break;
-        case("Area"):
-            devolver = _areaReport;
-            break;
-        case("Street"):
-            devolver = _street;
-            break;
-        case("Shooting"):
-            devolver = to_string(_shooting);
-            break;
-        case("DateTime"):
-            devolver = _datetime.ToString();
-            break;
-        case("Location"):
-            devolver = _location.ToString();
-            break;
-            
-        default:
-            throw std::invalid_argument(
+    if (field == "Counter"){
+        
+        devolver = to_string(_counter);
+    }
+    else if (field == "ID"){
+        
+        devolver = _id;
+    }
+    
+    else if (field == "Code"){
+     
+        devolver = _code;
+    }
+    else if (field == "Group"){
+        
+        devolver = _group;
+    }
+        
+    else if (field == "Description"){
+        
+        devolver = _description;
+    }
+    
+    else if (field == "District"){
+        
+        devolver = _district;
+    }
+    
+    else if (field == "Area"){
+        
+        devolver = _areaReport;
+    }
+    
+    else if (field == "Street"){
+        
+        devolver = _street;
+    }
+    
+    else if (field == "Shooting"){
+        
+        devolver = to_string(_shooting);
+    }
+    else if (field == "DateTime"){
+        
+        devolver = _dateTime.toString();
+    }
+    else if (field == "Location"){
+        
+        devolver = _location.toString();;
+    }
+
+    else{
+        
+        throw std::invalid_argument(
                 std::string("string Crime::getField(const string & field) const: ") + 
                 "El argumento introducido no se corresponde a un campo existente");
     }
-        
+    
+       
     return devolver;
     
 }
 
 void Crime::normalize() {
     
-    Normalize(_id);
-    Normalize(_group);
-    Normalize(_description);
-    Normalize(_district);
-    Normalize(_street);
-    Normalize(_code);
-    Normalize(_areaReport);
+    string id = getId();
+    Capitalize (id);
+    Trim(id);
+    setId(id);
+    
+    string group = getGroup();
+    Capitalize (group);
+    Trim(group);
+    setGroup(group);
+    
+    string description = getDescription();
+    Capitalize (description);
+    Trim(description);
+    setDescription(description);
+    
+    string district = getDistrict();
+    Capitalize (district);
+    Trim(district);
+    setDistrict(district);
+    
+    string street = getStreet();
+    Capitalize (street);
+    Trim(street);
+    setStreet(street);
+    
+    string code = getCode();
+    Capitalize (code);
+    Trim(code);
+    setCode(code);
+    
+    string areareport = getAreaReport();
+    Capitalize (areareport);
+    Trim(areareport);
+    setAreaReport(areareport);
 }
 
 void Trim(string & myString) {
