@@ -150,8 +150,21 @@ int main(int argc, char* argv[]) {
         getline(cin,crime_line);
         Crime crime(crime_line);
         inputCrimes[i] = crime;
-       
-        if(!crime.isIDUnknown() && crime.getId() /*algo mas que compruebe que no hay otro con el mismo ID*/ ){
+        
+        bool id_repetida = false;
+        int j = 0;
+        
+        while (!id_repetida && j < i){
+            
+            if (inputCrimes[i].getId() == inputCrimes[j].getId()){
+                
+                id_repetida = true;
+            } 
+            
+            else j++;
+        }
+        
+        if(!crime.isIDUnknown() && !id_repetida){
             if(count_selected_crimes < DIM_ARRAY){
                 Normalize(crime);
                 selectedCrimes[count_selected_crimes] = crime;
@@ -164,43 +177,65 @@ int main(int argc, char* argv[]) {
     cout << "Records read: " << num_crimes << endl;
     cout << count_selected_crimes << " crimes with valid and non-repeated ID: " << endl;
     // Show all the Crimes in the array
-    PrintArrayCrimes(selectedCrimes[],count_selected_crimes);
+    PrintArrayCrimes(selectedCrimes,count_selected_crimes);
    
     // Compute the histograms by day of the week and
     //    by hour of the day.
-    int data_field_horas = 0;
-    int data_field_dias = 1;
+    int data_field_horas = 1;
+    int data_field_dias = 0;
    
    
     // Show the histograms by day of the week and
     //    by hour of the day.
     cout << "\nHistogram by day of the week:" << endl;
-    ComputeHistogramArrayCrimes(selectedCrimes, count_selected_crimes, data_field_dias, frequencyByDay[]);
-    PrintHistogramArrayCrimes(data_field_dias, frequencyByDay[]);
+    ComputeHistogramArrayCrimes(selectedCrimes, count_selected_crimes, data_field_dias, frequencyByDay);
+    PrintHistogramArrayCrimes(data_field_dias, frequencyByDay);
    
     cout << "\nHistogram by hour of the day:" << endl;
-    ComputeHistogramArrayCrimes(selectedCrimes, count_selected_crimes, data_field_horas, frequencyByHour[]);
-    PrintHistogramArrayCrimes(data_field_horas, frequencyByHour[]);
+    ComputeHistogramArrayCrimes(selectedCrimes, count_selected_crimes, data_field_horas, frequencyByHour);
+    PrintHistogramArrayCrimes(data_field_horas, frequencyByHour);
 
     // Compute the maximum cumulative number of crimes in a week day
     //    and the maximum cumulative number of crimes in a day hour.
    
     // Show the maximum cumulative number of crimes in a week day
     //    and the maximum cumulative number of crimes in a  day hour.
-    cout << "\nMaximum cumulative number of crimes in a week day: " << ...
-            << endl;
+    
+    int max_dias = 0;
+    int pos_max_dias = 0;
+    
+    
+    int max_horas = 0;
+    int pos_max_horas = 0;
+    
+    ComputeMaxPosArrayInts(frequencyByDay, 7, max_dias, pos_max_dias);
+    ComputeMaxPosArrayInts(frequencyByHour, 24, max_horas, pos_max_horas);
+    
+    cout << "\nMaximum cumulative number of crimes in a week day: " <<
+            max_dias << endl;
     cout << "Day of maximum cumulative number of crimes in a week day: " <<
-            ... << endl;
-    cout << "Maximum cumulative number of crimes in a day hour: " << ...
-            << endl;
+            DateTime::dayName(pos_max_dias) << endl;
+    cout << "Maximum cumulative number of crimes in a day hour: " << 
+            max_horas << endl;
     cout << "Hour of maximum cumulative number of crimes in a day hour: " <<
-            ... << endl;
+            pos_max_horas << endl;
    
     // Compute and sort an array with those Crimes
     //    that verify the condition that the read field is equals to
     //    the given value.
+    
+    Crime crimenesCondicion[DIM_ARRAY];
+    int num_crimenesCondicion = 0;
+    
+    SelectWhereEQArrayCrimes(selectedCrimes, count_selected_crimes, field,
+            value, crimenesCondicion, num_crimenesCondicion);
+    
+    SortArrayCrimes (crimenesCondicion, num_crimenesCondicion);
+
+    
     cout << "\nSorted list of selected crimes where " << field << "=" <<
-            value << ":" << endl<<endl;
+            value << ":" << endl << endl;
     // Show the array content
    
+    PrintArrayCrimes(crimenesCondicion, num_crimenesCondicion);
 }

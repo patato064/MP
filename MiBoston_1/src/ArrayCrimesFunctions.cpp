@@ -21,7 +21,7 @@ void InitializeArrayInts(int array[], int const & size) {
     }
 }
 
-void ComputeMaxPosArrayInts(const int array[], int const & size, int & max, int & posMax) {
+void ComputeMaxPosArrayInts(const int array[], int const size, int & max, int & posMax) {
     
     max = array[0];
     
@@ -42,18 +42,18 @@ void PrintHistogramArrayCrimes(int dataField, const int histogram[]) {
     
     if (dataField == 0){
         
-        for (int i = 0; i < 6; i++){
+        for (int i = 0; i < 7; i++){
             
-            cout << DateTime::dayName(i) << " " << histogram[i];
+            cout << DateTime::dayName(i) << " " << histogram[i] << endl;
         }
         
     }
     
     if (dataField == 1){
         
-        for (int i = 0; i < 23; i++){
+        for (int i = 0; i < 24; i++){
             
-            cout << i << " " << histogram[i];
+            cout << i << " " << histogram[i] << endl;
         }
     }
         
@@ -77,7 +77,7 @@ int PosMinArrayCrimes(const Crime array[], int initialPos, int finalPos) {
     int pos_minimo = initialPos;
     Crime minimo = array[pos_minimo];
     
-    for(int pos = initialPos++; pos <= finalPos; pos++){
+    for(int pos = initialPos; pos <= finalPos; pos++){
         
         if((array[pos].getDateTime() < minimo.getDateTime()) || 
             (array[pos].getDateTime() == minimo.getDateTime() &&
@@ -110,7 +110,7 @@ void SortArrayCrimes(Crime array[], int nElements) {
     
     for (int i = 0; i < nElements; i++){
         
-        int pos_min = PosMinArrayCrimes(array, i, nElements-1);
+        int pos_min = PosMinArrayCrimes(array, i, nElements);
         SwapElementsArrayCrimes(array, nElements, i, pos_min);
     }
 }
@@ -138,7 +138,7 @@ int FindCrimeInArrayCrimes(const Crime array[], const Crime & crime,
 void ComputeHistogramArrayCrimes(const Crime crimes[], int nCrimes,
         int dataField, int histogram[]) {
     
-    if (dataField != 0 || dataField != 1){
+    if (dataField != 0 && dataField != 1){
         
         throw std::out_of_range(
                 std::string("void ComputeHistogramArrayCrimes(const Crime crimes[], int nCrimes, int dataField, int &histogram[])")
@@ -154,15 +154,17 @@ void ComputeHistogramArrayCrimes(const Crime crimes[], int nCrimes,
         if (dataField == 0){
             for (int j = 0; j < nCrimes; j++){
               
-                if (crimes[j].getDateTime().weekDay() == i);
+                if (crimes[j].getDateTime().weekDay() == i){
                 histogram[i]++;
+                }
             }
         }
         else{
             for (int k = 0; k < nCrimes; k++){
               
-                if (crimes[k].getDateTime().hour() == i);
+                if (crimes[k].getDateTime().hour() == i){
                 histogram[i]++;
+                }
             }
             
         }
@@ -177,12 +179,10 @@ void SelectWhereEQArrayCrimes(const Crime inputCrimes[], int inputCrimesSize,
     int j = 0;
     
     for (int i = 0; i < inputCrimesSize; i++){
+        
         if (inputCrimes[i].getField(field) == value){
-            
-            if (j < outputCrimesSize){
-                outputCrimes[j] = inputCrimes[i];
-                j++;
-            }
+            outputCrimes[j] = inputCrimes[i];
+            j++; 
         }
     }
 }
