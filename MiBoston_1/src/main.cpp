@@ -149,14 +149,18 @@ int main(int argc, char* argv[]) {
        
         getline(cin,crime_line);
         Crime crime(crime_line);
+        
+        Normalize(crime);
         inputCrimes[i] = crime;
+        
         
         bool id_repetida = false;
         int j = 0;
         
+        
         while (!id_repetida && j < i){
             
-            if (inputCrimes[i].getId() == inputCrimes[j].getId()){
+            if (crime.getId() == inputCrimes[j].getId()){
                 
                 id_repetida = true;
             } 
@@ -164,9 +168,9 @@ int main(int argc, char* argv[]) {
             else j++;
         }
         
-        if(!crime.isIDUnknown() && !id_repetida){
+        
+        if(!inputCrimes[i].isIDUnknown() && !id_repetida){
             if(count_selected_crimes < DIM_ARRAY){
-                Normalize(crime);
                 selectedCrimes[count_selected_crimes] = crime;
                 count_selected_crimes++;
             }

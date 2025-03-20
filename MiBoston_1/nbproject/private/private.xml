@@ -10,10 +10,12 @@
             <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_1/include/DateTime.h</file>
             <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_1/src/DateTime.cpp</file>
             <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_1/src/Crime.cpp</file>
+            <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_1/data/crimes2.b1out</file>
+            <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_1/data/crimes2.b1in</file>
             <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_1/src/main.cpp</file>
             <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_1/src/ArrayCrimesFunctions.cpp</file>
-            <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_1/include/ArrayCrimesFunctions.h</file>
             <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_1/include/Crime.h</file>
+            <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_1/include/ArrayCrimesFunctions.h</file>
         </group>
     </open-files>
 </project-private>

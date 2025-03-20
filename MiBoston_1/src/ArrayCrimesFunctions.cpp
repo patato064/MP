@@ -110,7 +110,7 @@ void SortArrayCrimes(Crime array[], int nElements) {
     
     for (int i = 0; i < nElements; i++){
         
-        int pos_min = PosMinArrayCrimes(array, i, nElements);
+        int pos_min = PosMinArrayCrimes(array, i, nElements - 1);
         SwapElementsArrayCrimes(array, nElements, i, pos_min);
     }
 }
@@ -176,13 +176,14 @@ void SelectWhereEQArrayCrimes(const Crime inputCrimes[], int inputCrimesSize,
     const string  field, const string value, Crime outputCrimes[], 
     int & outputCrimesSize) {
     
-    int j = 0;
+    outputCrimesSize = 0;
     
     for (int i = 0; i < inputCrimesSize; i++){
         
         if (inputCrimes[i].getField(field) == value){
-            outputCrimes[j] = inputCrimes[i];
-            j++; 
+            
+            outputCrimes[outputCrimesSize] = inputCrimes[i];
+            outputCrimesSize++;
         }
     }
 }
