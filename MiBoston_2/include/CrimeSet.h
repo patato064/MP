@@ -57,14 +57,14 @@ public:
      * Query method
      * @return The number of crimes. Positive integer.
      */
-    int getSize();
+    int getSize() const;
     
     /**
      * @brief Gets the capacity of the array of CrimeSet objects 
      * Query method
      * @return The capacity of the array of CrimeSet objects
      */
-    int getCapacity();
+    int getCapacity() const;
     
     /**
      * @brief Returns the field comment of this CrimeSet. This is a string that
@@ -72,7 +72,7 @@ public:
      * Query method
      * @return A string with the lines of comments
      */
-    std::string getComment();
+    std::string getComment() const;
     
     /**
      * @brief Sets the string comment for this CrimeSet object using
@@ -86,7 +86,7 @@ public:
      * Modifier method
      * @param text string with several lines of comments. Input parameter
      */
-    void setComment(std::string text);
+    void setComment(const std::string & text);
 
     /**
      * @brief Obtains a string with information about this CrimeSet object, 
@@ -118,7 +118,7 @@ public:
      * @return true if the given Crime was inserted in this CrimeSet object;
      * false otherwise
      */
-    bool append(Crime crime);
+    bool append(const Crime & crime);
     
     /**
      * @brief Gets the crime at the provided position
@@ -128,7 +128,7 @@ public:
      * provided position is not valid.
      * @return A reference to the Crime at the provided position
      */
-    Crime at(int pos);
+    const Crime & at(int pos) const;
      
     /**
      * @brief Searches the provided Crime in the array of crimes in this
@@ -144,7 +144,7 @@ public:
      * @return If found, it returns the position where the crime 
      * was found. Otherwise it returns -1
      */
-    int findCrime(Crime crime, int initialPos, int finalPos);
+    int findCrime(const Crime & crime, int initialPos, int finalPos) const;
 
     /**
      * @brief Searches the provided Crime in the array of crimes in this
@@ -157,7 +157,7 @@ public:
      * @return If found, it returns the position where the crime 
      * was found. Otherwise it returns -1
      */
-    int findCrime(Crime crime);
+    int findCrime(const Crime & crime) const;
        
     /**
      * @brief Loads into this object the CrimeSet information stored in the 
@@ -278,7 +278,7 @@ public:
     void sort();
     
 private:
-    static int DIM_VECTOR_CRIMES = 2000; ///< The capacity of the array _crimes
+    static const int DIM_VECTOR_CRIMES = 2000; ///< The capacity of the array _crimes
     static std::string MAGIC_STRING_T; ///< A string with the magic string for text files
     
     /**

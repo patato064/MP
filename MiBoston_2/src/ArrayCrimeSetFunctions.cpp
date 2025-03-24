@@ -12,3 +12,6 @@
 
 #include <iostream>
 #include "ArrayCrimeSetFunctions.h"
+
+using namespace std;
+
