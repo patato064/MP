@@ -48,7 +48,7 @@ void ReadArrayCrimeSet(std::istream inputStream, CrimeSet *arrayCrimeSet,
  * @param nCrimeSets Number of CrimeSets in the dynamic array arrayCrimeSet. 
  * Input parameter 
  */
-void PrintArrayCrimeSet(CrimeSet *arrayCrimeSet, int nCrimeSets);
+void PrintArrayCrimeSet(const CrimeSet * &arrayCrimeSet, int nCrimeSets);
 
 /**
  * @brief Allocates memory for a dynamic array of CrimeSets with a capacity 
@@ -82,7 +82,7 @@ void DeallocateArrayCrimeSet(CrimeSet * arrayCrimeSet);
  * @param newCrimeSet The new CrimeSet to be inserted at the end of the
  * dynamic array. Input parameter
  */
-void AppendCrimeArrayCrimeSet(CrimeSet * arrayCrimeSet, int nCrimeSets, 
-        CrimeSet newCrimeSet);
+void AppendCrimeArrayCrimeSet(CrimeSet * &arrayCrimeSet, int &nCrimeSets, 
+        const CrimeSet newCrimeSet);
 
 #endif /* ARRAYCRIMESETFUNCTIONS_H */
