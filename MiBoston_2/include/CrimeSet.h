@@ -299,7 +299,7 @@ private:
      * given pos is not valid
      * @return A reference to the Crime at the given position.
      */
-    Crime at(int pos);
+    Crime & at(int pos);
     
     /**
      * @brief Reads comment lines from the provided input stream and appends
@@ -324,7 +324,7 @@ private:
      * Query method
      * @param outputStream output stream where the comments will be saved
      */
-    void saveComments(std::ostream outputStream);
+    void saveComments(std::ostream &outputStream)const;
 }; // end class CrimeSet
 
 /**
@@ -370,7 +370,7 @@ SATURDAY 32
  * @param histogram histogram with cumulative frequencies by day of the week 
  * or hour of the day. Input parameter
  */
-void PrintHistogramArrayCrimes(int dataField, int histogram[]);
+void PrintHistogramArrayCrimes(int dataField, const int histogram[]) ;
 
 /**
  * Returns a string with the same content as the provided string @p comment,
@@ -388,5 +388,24 @@ void PrintHistogramArrayCrimes(int dataField, int histogram[]);
  */
 std::string FormatAsComment(std::string comment, char commentCharacter='#');
 
+
+// Función añadida del archivo ArrayCrimesFunctions para facilitar el método
+// void sort();
+
+/**
+ * @brief Finds the position of the element with the minimum crime in the
+ * subarray of @p array that begins at position @p initialPos and ends at position
+ * @p finalPos (both included). The order
+ * criterion among Crimes uses the dateTime and ID fields: crime1<crime2 if
+ * crime1.dateTime < crime2.dateTime. If crime1.dateTime == crime2.dateTime
+ * then the alphabetical order of the ID field is used.
+ * @param array An array of Crime. Input parameter
+ * @param initialPos The initial position of the subarray. Input parameter
+ * @param finalPos The final position of the subarray. Input parameter
+ * @return the position of the element with minimum crime in the subarray 
+ * that begins at position @p initialPos and ends at position @p finalPos 
+ * (both included). If no element can be retrieved, it returns -1
+*/
+int PosMinArrayCrimes(const Crime array[], int initialPos, int finalPos);
 #endif /* CRIMESET_H */
 

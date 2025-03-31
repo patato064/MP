@@ -20,20 +20,6 @@ using namespace std;
 
 const string CrimeSet::MAGIC_STRING_T="MP-CRIME-T-1.0";
 
-string FormatAsComment(string comment, char commentCharacter){
-    size_t start = 0, end;
-    string formatedComment;
-    if (comment.size() > 0) { // If comment has at least one character
-        while ((end = comment.find('\n', start)) != std::string::npos) {
-            formatedComment += commentCharacter + comment.substr(start, end - start) + "\n";
-            start = end + 1;
-        }
-        if(start<comment.size()){ // This happens when last line of comment does not have \n
-            formatedComment += commentCharacter + comment.substr(start, comment.size() - start) + "\n";
-        }
-    }
-    return formatedComment;
-}
 
 CrimeSet::CrimeSet():_comment(""), _nCrimes(0){}
 
@@ -187,7 +173,6 @@ void CrimeSet::normalize(){
     }
 }
 
-/*
 
 void CrimeSet::computeHistogram(int dataField, int histogram[]) const{
     
@@ -223,7 +208,6 @@ void CrimeSet::computeHistogram(int dataField, int histogram[]) const{
     }
 }
 
-*/
 
 CrimeSet CrimeSet::selectWhereEQ(const std::string &field, const std::string &value)const{
     
@@ -255,6 +239,33 @@ CrimeSet CrimeSet::selectValidLocation() const{
     return valido;
 }
 
+
+void CrimeSet::sort(){
+    
+    for (int i = 0; i < _nCrimes; i++){
+        
+        int pos_min = PosMinArrayCrimes(_crimes, i, _nCrimes - 1);
+        
+        Crime cambiar = _crimes[pos_min];
+        
+        _crimes[pos_min] = _crimes[i];
+        _crimes[i] = cambiar;
+    }
+}
+
+
+// Métodos Privados de la clase CrimeSet
+
+    Crime & CrimeSet::at (int pos){
+    
+    if (0 > pos || pos >= _nCrimes){
+        
+        //THROW PUTA
+    }
+    
+    return _crimes[pos];
+}
+
 void CrimeSet::readComments(std::istream & inputStream){
     
     
@@ -276,3 +287,85 @@ void CrimeSet::readComments(std::istream & inputStream){
     
     inputStream.putback(c);
 } 
+
+
+void CrimeSet::saveComments(std::ostream &outputStream) const{
+    
+    string comment = FormatAsComment(_comment);
+    
+    outputStream << comment;
+}
+
+// Funciones complementarias a la clase CrimeSet
+
+
+void InitializeArrayInts(int array[], int size){
+    
+    for (int i = 0; i < size; i++){
+        
+        array[i] = 0;
+    }
+}
+
+void PrintHistogramArrayCrimes(int dataField, const int histogram[]) {
+    
+    if (dataField == 0){
+        
+        for (int i = 0; i < 7; i++){
+            
+            cout << DateTime::dayName(i) << " " << histogram[i] << endl;
+        }
+        
+    }
+    
+    if (dataField == 1){
+        
+        for (int i = 0; i < 24; i++){
+            
+            cout << i << " " << histogram[i] << endl;
+        }
+    }
+        
+}
+
+string FormatAsComment(string comment, char commentCharacter){
+    size_t start = 0, end;
+    string formatedComment;
+    if (comment.size() > 0) { // If comment has at least one character
+        while ((end = comment.find('\n', start)) != std::string::npos) {
+            formatedComment += commentCharacter + comment.substr(start, end - start) + "\n";
+            start = end + 1;
+        }
+        if(start<comment.size()){ // This happens when last line of comment does not have \n
+            formatedComment += commentCharacter + comment.substr(start, comment.size() - start) + "\n";
+        }
+    }
+    return formatedComment;
+}
+
+
+// Función para facilitar void CrimeSet::sort()
+
+int PosMinArrayCrimes(const Crime array[], int initialPos, int finalPos) {
+    
+    int pos_minimo = initialPos;
+    
+    if (initialPos > finalPos){
+        pos_minimo = -1;
+    }
+        else{
+        Crime minimo = array[pos_minimo];
+
+        for(int pos = initialPos; pos <= finalPos; pos++){
+
+            if((array[pos].getDateTime() < minimo.getDateTime()) || 
+                (array[pos].getDateTime() == minimo.getDateTime() &&
+                 array[pos].getId() < minimo.getId())){
+                minimo = array[pos];
+                pos_minimo = pos;
+            } //if 
+        } //for
+    }
+    
+    return pos_minimo;
+}
