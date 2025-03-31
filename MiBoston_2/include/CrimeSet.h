@@ -86,7 +86,7 @@ public:
      * Modifier method
      * @param text string with several lines of comments. Input parameter
      */
-    void setComment(const std::string & text);
+    void setComment(std::string & text);
 
     /**
      * @brief Obtains a string with information about this CrimeSet object, 
@@ -97,7 +97,7 @@ public:
      * Query method
      * @return string with information about this CrimeSet object
      */
-    std::string toString();
+    std::string toString() const;
     
     /**
      * @brief Removes all the Crimes from this object, leaving the container 
@@ -180,7 +180,7 @@ public:
      * @throw std::out_of_range Throws a std::out_of_range exception if the 
      * number of crimes in the given file is negative.
      */
-    void load(std::string fileName);
+    void load(const std::string & fileName);
     
     /**
      * @brief Saves this CrimeSet object in the given file. 
@@ -193,7 +193,7 @@ public:
      * if the given file cannot be opened or if an error occurs while writing
      * to the file
      */
-    void save(std::string fileName);
+    void save(const std::string & fileName);
     
     /**
      * @brief Appends to this CrimeSet object, the list of  
@@ -205,7 +205,7 @@ public:
      * Modifier method
      * @param crimeSet A CrimeSet object. Input parameter
      */
-    void join(CrimeSet crimeSet);
+    void join(const CrimeSet & crimeSet);
     
     /**
      * @brief Normalizes each one of the Crime objects in this CrimeSet
@@ -231,7 +231,7 @@ public:
      * @param histogram output array where the cumulative frequencies will be saved. 
      * Input/output parameter
      */
-    void computeHistogram(int dataField, int histogram[]);
+    void computeHistogram(int dataField, int histogram[]) const;
 
     /**
      * @brief Returns a CrimeSet object with those crimes whose label of 
@@ -250,7 +250,7 @@ public:
      * @param value The value of the selected attribute. Input parameter
      * @return A CrimeSet with the selected Crimes.
      */
-    CrimeSet selectWhereEQ(std::string field, std::string value);
+    CrimeSet selectWhereEQ(const std::string & field, const std::string & value) const;
 
     /**
      * @brief Returns a CrimeSet object with those crimes whose latitude and 
@@ -265,7 +265,7 @@ public:
      * @return A CrimeSet with those crimes whose latitude and longitude are 
      * both valid
      */
-    CrimeSet selectValidLocation();
+    CrimeSet selectValidLocation() const;
     
     /**
      * Sorts the array of Crimes by increasing alphabetical order of the field 
@@ -279,7 +279,7 @@ public:
     
 private:
     static const int DIM_VECTOR_CRIMES = 2000; ///< The capacity of the array _crimes
-    static std::string MAGIC_STRING_T; ///< A string with the magic string for text files
+    static const std::string MAGIC_STRING_T; ///< A string with the magic string for text files
     
     /**
      * string that contains several lines of comments (text in natural 
@@ -314,7 +314,7 @@ private:
      * the end.
      * @param inputStream input stream from which comments will be read 
      */
-    void readComments(std::istream inputStream);
+    void readComments(std::istream & inputStream);
 
     /**
      * @brief Saves the line comments contained in the field _comment in the 

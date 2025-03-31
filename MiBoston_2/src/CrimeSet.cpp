@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #include "CrimeSet.h"
 
@@ -51,23 +52,23 @@ std::string CrimeSet::getComment() const{
     return _comment;
 }
 
-void CrimeSet::setComment(const std::string & text) {
+void CrimeSet::setComment(std::string & text) {
     
     if (text.at(text.length()-1) != '\n'){
         
-        text.append('\n');
+        text.append ("\n");
     }
     
     _comment = text;
 }
 
-std::string CrimeSet::toString(){
+std::string CrimeSet::toString() const{
     
     string recorcholis = to_string(_nCrimes) + "\n";
     
     for (int i = 0; i < _nCrimes; i++){
         
-       recorcholis += _crimes[i].toString();
+       recorcholis += _crimes[i].toString() + "\n";
     }
             
     return recorcholis;
@@ -127,3 +128,151 @@ int CrimeSet::findCrime(const Crime & crime) const{
     
     return findCrime(crime, 0, _nCrimes -1);
 }
+
+void CrimeSet::load(const std::string & fileName){
+    
+    string magica;
+    
+    this-> clear();
+    
+    ifstream fentrada;
+    fentrada.open(fileName);
+    
+    fentrada >> magica;
+    
+    if (magica == MAGIC_STRING_T){
+        
+        readComments(fentrada);
+        
+        fentrada >> _nCrimes;
+        
+        for (int i = 0; i < _nCrimes;){
+            
+            string crimen_actual;
+            
+            getline(fentrada, crimen_actual);
+            
+            this->append(Crime(crimen_actual));
+            
+        }
+            
+    }
+    
+    fentrada.close();
+}
+
+
+void CrimeSet::save(const std::string & fileName){
+    
+    ofstream fsalida;
+    
+    fsalida.open(fileName);
+    fsalida << this->toString();
+    fsalida.close();
+}
+
+void CrimeSet::join(const CrimeSet & crimeSet){
+    
+    for (int i = 0; i < crimeSet.getSize(); i++){
+        
+        this->append(crimeSet.at(i));
+    }
+}
+
+void CrimeSet::normalize(){
+    
+    for (int i = 0; i < _nCrimes; i++){
+        
+        Normalize(_crimes[i]);
+    }
+}
+
+/*
+
+void CrimeSet::computeHistogram(int dataField, int histogram[]) const{
+    
+     if (dataField != 0 && dataField != 1){
+        
+        throw std::out_of_range(
+                std::string("void ComputeHistogramArrayCrimes(const Crime crimes[], int nCrimes, int dataField, int &histogram[])")
+                + "dataField distinto de 0 o 1");
+    }
+    
+    int num_datos = (dataField == 0)? 7 : 24;
+   
+    InitializeArrayInts(histogram, num_datos);
+    
+    for (int i = 0; i < num_datos; i++){
+
+        if (dataField == 0){
+            for (int j = 0; j < _nCrimes; j++){
+
+                if (_crimes[j].getDateTime().weekDay() == i){
+                histogram[i]++;
+                }
+            }
+        }
+        else{
+            for (int k = 0; k < _nCrimes; k++){
+
+                if (_crimes[k].getDateTime().hour() == i){
+                histogram[i]++;
+                }
+            }
+        }
+    }
+}
+
+*/
+
+CrimeSet CrimeSet::selectWhereEQ(const std::string &field, const std::string &value)const{
+    
+    CrimeSet nuevo;
+    
+    for (int i = 0; i < _nCrimes; i++){
+        
+        if (_crimes[i].getField(field) == value){
+            
+            nuevo.append(_crimes[i]);
+        }
+    }
+    
+    return nuevo;
+}
+
+CrimeSet CrimeSet::selectValidLocation() const{
+    
+    CrimeSet valido;
+    
+    for (int i = 0; i < _nCrimes; i++){
+        
+        if (_crimes[i].getLocation().isValid()){
+            
+            valido.append(_crimes[i]);
+        }
+    }
+    
+    return valido;
+}
+
+void CrimeSet::readComments(std::istream & inputStream){
+    
+    
+    char c = inputStream.get();
+    
+    string comentario;
+    
+    while (c ==  '#'){
+        
+        string linea;
+        getline (inputStream, linea);
+        
+        comentario = comentario + linea;
+        
+        c = inputStream.get();
+    }
+    
+    _comment = comentario;
+    
+    inputStream.putback(c);
+} 
