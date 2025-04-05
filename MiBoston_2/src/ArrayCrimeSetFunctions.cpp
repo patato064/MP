@@ -12,8 +12,34 @@
 
 #include <iostream>
 #include "ArrayCrimeSetFunctions.h"
+#include <fstream>
 
 using namespace std;
+
+void ReadArrayCrimeSet(istream inputStream, CrimeSet * &arrayCrimeSet, 
+        int & nCrimeSets){
+    string fileName;
+    
+    bool fin = false;
+    
+    while(!fin){
+        getline(inputStream, fileName);
+        
+        if(inputStream){ //Comprueba que se ha leido correctamente un archivo
+            if(!fileName.empty()){ //Comprobamos que no es una cadena vacia
+                ifstream file(fileName); //Abre el archivo con ese nombre
+                if(file){ //Comprobamos que se ha abierto el archivo
+                    CrimeSet newCrimeSet;
+                    //file >> newCrimeSet; Esto no funciona y no se por que:)
+                    AppendCrimeArrayCrimeSet(arrayCrimeSet, nCrimeSets, newCrimeSet);
+                } //if file
+            }  //if fileName.empty
+        } //if inputStream
+        else{
+            fin = true;
+        } //else
+    }//while
+} //metodo
 
 void PrintArrayCrimeSet(const CrimeSet * &arrayCrimeSet, int nCrimeSets){
     for(int i = 0; i < nCrimeSets; i++){

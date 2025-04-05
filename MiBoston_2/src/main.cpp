@@ -5,8 +5,8 @@
 
 /** 
  * @file   main.cpp
- * @author estudiante1: apellidos*, nombre*
- * @author estudiante2: apellidos*, nombre* (solo si procede)  
+ * @author estudiante1: Gil Casado, Nestor Eloy
+ * @author estudiante2: Salvador Gil, Sergio 
  * @note To be implemented by students 
  * Created on September 25, 2024, 2:01 PM
  */
@@ -24,7 +24,7 @@ void showHelp(std::ostream& outputStream);
 
 /**
  * Shows help about the use of this program in the given output stream
- * @param outputStream The output stream where the help will be shown (for example,
+ * @param outputStream The output stream éwhere the help will be shown (for example,
  * cout, cerr, etc)
  */
 void showHelp(std::ostream& outputStream) {
