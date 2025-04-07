@@ -362,13 +362,11 @@ void Trim(string & myString) {
     
     // Eliminar espacios y tabulaciones al principio
     
-    size_t start = 0;
-    while (start < myString.length() && isspace(myString.at(start))) start++;
+    size_t start = myString.find_first_not_of(" ");
     
     // Eliminar espacios y tabulaciones al final
     
-    size_t end = myString.length();
-    while (end > start && isspace(myString[end-1])) end--;
+    size_t end = myString.find_last_not_of(" ");
     
     // Crear subcadena que contenga solo los caracteres relevantes
     
@@ -390,40 +388,40 @@ void Capitalize(string & myString) {
 
 void Normalize(Crime & crime) {
     
-    string id = crime.getId();
-    Capitalize (id);
-    Trim(id);
-    crime.setId(id);
+    string field = crime.getId();
+    Capitalize (field);
+    Trim(field);
+    crime.setId(field);
     
-    string group = crime.getGroup();
-    Capitalize (group);
-    Trim(group);
-    crime.setGroup(group);
+    field = crime.getGroup();
+    Capitalize (field);
+    Trim(field);
+    crime.setId(field);
     
-    string description = crime.getDescription();
-    Capitalize (description);
-    Trim(description);
-    crime.setDescription(description);
+    field = crime.getDescription();
+    Capitalize (field);
+    Trim(field);
+    crime.setId(field);
     
-    string district = crime.getDistrict();
-    Capitalize (district);
-    Trim(district);
-    crime.setDistrict(district);
+    field = crime.getDistrict();
+    Capitalize (field);
+    Trim(field);
+    crime.setId(field);
     
-    string street = crime.getStreet();
-    Capitalize (street);
-    Trim(street);
-    crime.setStreet(street);
+    field = crime.getStreet();
+    Capitalize (field);
+    Trim(field);
+    crime.setId(field);
     
-    string code = crime.getCode();
-    Capitalize (code);
-    Trim(code);
-    crime.setCode(code);
+    field = crime.getCode();
+    Capitalize (field);
+    Trim(field);
+    crime.setId(field);
     
-    string areareport = crime.getAreaReport();
-    Capitalize (areareport);
-    Trim(areareport);
-    crime.setAreaReport(areareport);
+    field = crime.getAreaReport();
+    Capitalize (field);
+    Trim(field);
+    crime.setId(field);
     
 }
 

@@ -113,10 +113,7 @@ public:
     void set(float latitude, float longitude);
 
     
-    
-    
-    
-    void set(std::string coords);
+    void set(const std::string &coords);
     
     
     

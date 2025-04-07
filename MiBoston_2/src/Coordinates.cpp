@@ -50,7 +50,7 @@ void Coordinates::set(float latitude, float longitude){
     _longitude = longitude;
 }
     
-void Coordinates::set(std::string coords){
+void Coordinates::set(const std::string &coords){
         
     int pos_coma = coords.find(","); 
             

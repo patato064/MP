@@ -179,30 +179,27 @@ void CrimeSet::computeHistogram(int dataField, int histogram[]) const{
      if (dataField != 0 && dataField != 1){
         
         throw std::out_of_range(
-                std::string("void ComputeHistogramArrayCrimes(const Crime crimes[], int nCrimes, int dataField, int &histogram[])")
+                std::string("void CrimeSet::computeHistogram(int dataField, int histogram[]) const")
                 + "dataField distinto de 0 o 1");
     }
     
     int num_datos = (dataField == 0)? 7 : 24;
    
     InitializeArrayInts(histogram, num_datos);
-    
-    for (int i = 0; i < num_datos; i++){
 
-        if (dataField == 0){
-            for (int j = 0; j < _nCrimes; j++){
+    if (dataField == 0){
+        for (int j = 0; j < _nCrimes; j++){
 
-                if (_crimes[j].getDateTime().weekDay() == i){
-                histogram[i]++;
-                }
+            if (_crimes[j].getDateTime().weekDay() == j){
+            histogram[j]++;
             }
         }
-        else{
-            for (int k = 0; k < _nCrimes; k++){
+    }
+    else{
+        for (int k = 0; k < _nCrimes; k++){
 
-                if (_crimes[k].getDateTime().hour() == i){
-                histogram[i]++;
-                }
+            if (_crimes[k].getDateTime().hour() == k){
+            histogram[k]++;
             }
         }
     }
@@ -318,7 +315,7 @@ void PrintHistogramArrayCrimes(int dataField, const int histogram[]) {
         
     }
     
-    if (dataField == 1){
+    else if (dataField == 1){
         
         for (int i = 0; i < 24; i++){
             
