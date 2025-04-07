@@ -7,11 +7,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_2/src/ArrayCrimeSetFunctions.cpp</file>
             <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_2/include/CrimeSet.h</file>
             <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_2/src/main.cpp</file>
             <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_2/src/CrimeSet.cpp</file>
             <file>file:/home/mp/Escritorio/MP/Boston/MiBoston_2/include/ArrayCrimeSetFunctions.h</file>
+=======
+            <file>file:/home/usuario/MP/Prácticas%20MP/MP/MiBoston_2/include/CrimeSet.h</file>
+            <file>file:/home/usuario/MP/Prácticas%20MP/MP/MiBoston_2/include/ArrayCrimeSetFunctions.h</file>
+            <file>file:/home/usuario/MP/Prácticas%20MP/MP/MiBoston_2/src/Crime.cpp</file>
+            <file>file:/home/usuario/MP/Prácticas%20MP/MP/MiBoston_2/include/Coordinates.h</file>
+            <file>file:/home/usuario/MP/Prácticas%20MP/MP/MiBoston_2/src/ArrayCrimeSetFunctions.cpp</file>
+            <file>file:/home/usuario/MP/Prácticas%20MP/MP/MiBoston_2/src/main.cpp</file>
+            <file>file:/home/usuario/MP/Prácticas%20MP/MP/MiBoston_2/src/CrimeSet.cpp</file>
+>>>>>>> 2e968136b05e366481d05ec158c87f2df3a6fb03
         </group>
     </open-files>
 </project-private>

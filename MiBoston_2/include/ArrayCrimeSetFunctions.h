@@ -36,8 +36,8 @@
  * @param nCrimeSets Number of CrimeSets in the dynamic array arrayCrimeSet. 
  * Input/output parameter 
  */
-void ReadArrayCrimeSet(std::istream inputStream, CrimeSet *arrayCrimeSet, 
-        int nCrimeSets);
+void ReadArrayCrimeSet(std::istream inputStream, CrimeSet * &arrayCrimeSet, 
+        int & nCrimeSets);
 
 /**
  * @brief Shows in the standard output the CrimeSet contained in the 
@@ -83,6 +83,6 @@ void DeallocateArrayCrimeSet(CrimeSet * arrayCrimeSet);
  * dynamic array. Input parameter
  */
 void AppendCrimeArrayCrimeSet(CrimeSet * &arrayCrimeSet, int &nCrimeSets, 
-        const CrimeSet newCrimeSet);
+        const CrimeSet &newCrimeSet);
 
 #endif /* ARRAYCRIMESETFUNCTIONS_H */
