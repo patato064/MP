@@ -89,8 +89,27 @@ int main(int argc, char* argv[]) {
 
     // Check if the number of arguments is valid.
     
+    
+    if (argc != 2 || argc != 3){
+        
+        showHelp(cerr);
+    }
+    
+    
     // Read and save in a dynamic array of CrimeSet objects,
     //    each one of the crm files from the input file
+    
+    
+    ifstream fentrada;
+    
+    fentrada.open(argv[1]);
+            
+    int nCrimeSets = 0;
+    
+    CrimeSet *arrayCrimeSet = nullptr;
+    
+    ReadArrayCrimeSet(fentrada, arrayCrimeSet, nCrimeSets);
+    
     
     // Loop for every CrimeSet in the dynamic array
             // Normalize the CrimeSet (normalize each Crime in the CrimeSet)
