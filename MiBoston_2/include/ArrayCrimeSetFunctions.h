@@ -36,7 +36,7 @@
  * @param nCrimeSets Number of CrimeSets in the dynamic array arrayCrimeSet. 
  * Input/output parameter 
  */
-void ReadArrayCrimeSet(std::istream inputStream, CrimeSet * &arrayCrimeSet, 
+void ReadArrayCrimeSet(std::istream &inputStream, CrimeSet * &arrayCrimeSet, 
         int & nCrimeSets);
 
 /**

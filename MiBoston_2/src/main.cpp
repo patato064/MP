@@ -110,12 +110,14 @@ int main(int argc, char* argv[]) {
     
     ReadArrayCrimeSet(fentrada, arrayCrimeSet, nCrimeSets);
     
+    //cout << nCrimeSets << endl;
     
     // Loop for every CrimeSet in the dynamic array
             // Normalize the CrimeSet (normalize each Crime in the CrimeSet)
             // Select only those Crimes with a valid location (discard all with invalid location)
             // Select only those Crimes where Shotting =="1"
    
+    
     // Make the fusion of all the CrimeSets in the array
     
     // Sort the array of the resulting CrimeSet

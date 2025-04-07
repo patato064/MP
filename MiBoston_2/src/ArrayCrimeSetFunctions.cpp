@@ -16,7 +16,7 @@
 
 using namespace std;
 
-void ReadArrayCrimeSet(istream inputStream, CrimeSet * &arrayCrimeSet, 
+void ReadArrayCrimeSet(istream &inputStream, CrimeSet * &arrayCrimeSet, 
         int & nCrimeSets){
     string fileName;
     
@@ -28,7 +28,8 @@ void ReadArrayCrimeSet(istream inputStream, CrimeSet * &arrayCrimeSet,
         if(inputStream){ //Comprueba que se ha leido correctamente un archivo
             if(!fileName.empty()){ //Comprobamos que no es una cadena vacia
                 ifstream file(fileName); //Abre el archivo con ese nombre
-                //if(file){ //Comprobamos que se ha abierto el archivo
+                if(file){ //Comprobamos que se ha abierto el archivo
+                    
                     
                     string newCrimeSetString;
                     file >> newCrimeSetString;
@@ -37,7 +38,8 @@ void ReadArrayCrimeSet(istream inputStream, CrimeSet * &arrayCrimeSet,
                     newCrimeSet.save(newCrimeSetString);
                     
                     AppendCrimeArrayCrimeSet(arrayCrimeSet, nCrimeSets, newCrimeSet);
-               // } //if file
+                    
+                } //if file
             }  //if fileName.empty
         } //if inputStream
         else{
