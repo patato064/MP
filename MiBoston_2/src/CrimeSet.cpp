@@ -88,8 +88,8 @@ bool CrimeSet::append(const Crime & crime){
 const Crime & CrimeSet::at (int pos) const{
     
     if (0 > pos || pos >= _nCrimes){
-        
-        //THROW PUTA
+        throw std::out_of_range(std::string("const Crime & at(int pos) const: ") +
+                "La posicion dada no es valida"); 
     }
     
     return _crimes[pos];
@@ -256,8 +256,8 @@ void CrimeSet::sort(){
     Crime & CrimeSet::at (int pos){
     
     if (0 > pos || pos >= _nCrimes){
-        
-        //THROW PUTA
+        throw std::out_of_range(std::string("Crime & at(int pos): ") +
+                "La posicion dada no es valida");
     }
     
     return _crimes[pos];
