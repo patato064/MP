@@ -29,8 +29,13 @@ void ReadArrayCrimeSet(istream inputStream, CrimeSet * &arrayCrimeSet,
             if(!fileName.empty()){ //Comprobamos que no es una cadena vacia
                 ifstream file(fileName); //Abre el archivo con ese nombre
                 if(file){ //Comprobamos que se ha abierto el archivo
+                    
+                    string newCrimeSetString;
+                    file >> newCrimeSetString;
+                    
                     CrimeSet newCrimeSet;
-                    //file >> newCrimeSet; Esto no funciona y no se por que:)
+                    newCrimeSet.save(newCrimeSetString);
+                    
                     AppendCrimeArrayCrimeSet(arrayCrimeSet, nCrimeSets, newCrimeSet);
                 } //if file
             }  //if fileName.empty
