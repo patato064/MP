@@ -154,6 +154,7 @@ void CrimeSet::save(const std::string & fileName){
     
     fsalida.open(fileName);
     fsalida << this->toString();
+    saveComments(fsalida);
     fsalida.close();
 }
 
