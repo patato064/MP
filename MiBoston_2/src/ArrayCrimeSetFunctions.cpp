@@ -36,7 +36,7 @@ void ReadArrayCrimeSet(istream &inputStream, CrimeSet * &arrayCrimeSet,
                     file >> newCrimeSetString;
                     
                     CrimeSet newCrimeSet;
-                    newCrimeSet.save(newCrimeSetString);
+                    newCrimeSet.load(newCrimeSetString);
                     
                     AppendCrimeArrayCrimeSet(arrayCrimeSet, nCrimeSets, newCrimeSet);
                     
