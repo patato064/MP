@@ -89,10 +89,11 @@ int main(int argc, char* argv[]) {
 
     // Check if the number of arguments is valid.
     
-    string inputFileName = argv[1];
+    
     if (argc != 2 && argc != 3){
         
         showHelp(cerr);
+        return 1;
     }
     
     if (argc == 3){
@@ -100,6 +101,7 @@ int main(int argc, char* argv[]) {
         outputFileName = argv[2];
     }
     
+    string inputFileName = argv[1];
     
     // Read and save in a dynamic array of CrimeSet objects,
     //    each one of the crm files from the input file

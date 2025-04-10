@@ -1,1 +1,0 @@
-Test #2 [tests//1.Integrity01.test] valgrind --leak-check=full  dist/Debug/GNU-Linux/miboston_2  data/input01.b2in tests/output/output.crm

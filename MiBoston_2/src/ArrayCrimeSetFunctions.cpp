@@ -30,7 +30,7 @@ void ReadArrayCrimeSet(istream &inputStream, CrimeSet * &arrayCrimeSet,
                 ifstream file(fileName); //Abre el archivo con ese nombre
                 if(file){ //Comprobamos que se ha abierto el archivo
                     
-                    nCrimeSets++;
+                    
                     
                     string newCrimeSetString;
                     file >> newCrimeSetString;
@@ -40,6 +40,7 @@ void ReadArrayCrimeSet(istream &inputStream, CrimeSet * &arrayCrimeSet,
                     
                     AppendCrimeArrayCrimeSet(arrayCrimeSet, nCrimeSets, newCrimeSet);
                     
+                    nCrimeSets++;
                 } //if file
             }  //if fileName.empty
         } //if inputStream

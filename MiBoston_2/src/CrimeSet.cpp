@@ -40,7 +40,7 @@ std::string CrimeSet::getComment() const{
 
 void CrimeSet::setComment(std::string & text) {
     
-    if (text.at(text.length()-1) != '\n'){
+    if (text.at(text.length()-1) != '\n' && text != ""){
         
         text.append ("\n");
     }
@@ -196,7 +196,7 @@ void CrimeSet::computeHistogram(int dataField, int histogram[]) const{
             
             int dia = _crimes[j].getDateTime().weekDay();
             
-            if (dia >= 0 && dia <= 7){
+            if (dia >= 0 && dia < 7){
                 histogram[dia]++;
             }
         }
