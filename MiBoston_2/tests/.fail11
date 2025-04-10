@@ -1,21 +1,21 @@
-==2633== Memcheck, a memory error detector
-==2633== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==2633== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==2633== Command: /home/mp/Escritorio/MP/Boston/MiBoston_2/dist/Debug/GNU-Linux/miboston_2 data/input09.b2in tests/output/output.crm
-==2633== 
-==2633== 
-==2633== HEAP SUMMARY:
-==2633==     in use at exit: 72,704 bytes in 1 blocks
-==2633==   total heap usage: 240,050 allocs, 240,049 frees, 16,420,975 bytes allocated
-==2633== 
-==2633== LEAK SUMMARY:
-==2633==    definitely lost: 0 bytes in 0 blocks
-==2633==    indirectly lost: 0 bytes in 0 blocks
-==2633==      possibly lost: 0 bytes in 0 blocks
-==2633==    still reachable: 72,704 bytes in 1 blocks
-==2633==         suppressed: 0 bytes in 0 blocks
-==2633== Reachable blocks (those to which a pointer was found) are not shown.
-==2633== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==2633== 
-==2633== For counts of detected and suppressed errors, rerun with: -v
-==2633== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==15565== Memcheck, a memory error detector
+==15565== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==15565== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==15565== Command: /home/mp/Escritorio/MP/Boston/MiBoston_2/dist/Debug/GNU-Linux/miboston_2 data/input09.b2in tests/output/output.crm
+==15565== 
+==15565== 
+==15565== HEAP SUMMARY:
+==15565==     in use at exit: 72,704 bytes in 1 blocks
+==15565==   total heap usage: 210,043 allocs, 210,042 frees, 15,768,666 bytes allocated
+==15565== 
+==15565== LEAK SUMMARY:
+==15565==    definitely lost: 0 bytes in 0 blocks
+==15565==    indirectly lost: 0 bytes in 0 blocks
+==15565==      possibly lost: 0 bytes in 0 blocks
+==15565==    still reachable: 72,704 bytes in 1 blocks
+==15565==         suppressed: 0 bytes in 0 blocks
+==15565== Reachable blocks (those to which a pointer was found) are not shown.
+==15565== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==15565== 
+==15565== For counts of detected and suppressed errors, rerun with: -v
+==15565== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

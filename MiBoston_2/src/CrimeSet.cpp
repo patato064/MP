@@ -129,8 +129,11 @@ void CrimeSet::load(const std::string & fileName){
     if (magica == MAGIC_STRING_T){
         
         readComments(fentrada);
+        string num;
         
         fentrada >> _nCrimes;
+        fentrada.ignore();
+        //_nCrimes = num;
         
         for (int i = 0; i < _nCrimes; i++){
             
@@ -138,7 +141,9 @@ void CrimeSet::load(const std::string & fileName){
             
             getline(fentrada, crimen_actual);
             
-            this->append(Crime(crimen_actual));
+            if (!crimen_actual.empty()){
+                this->append(Crime(crimen_actual));
+            }
             
         }
             
