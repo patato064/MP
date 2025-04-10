@@ -99,7 +99,6 @@ int main(int argc, char* argv[]) {
     // Read and save in a dynamic array of CrimeSet objects,
     //    each one of the crm files from the input file
     
-    
     ifstream fentrada;
     
     fentrada.open(argv[1]);
@@ -110,17 +109,40 @@ int main(int argc, char* argv[]) {
     
     ReadArrayCrimeSet(fentrada, arrayCrimeSet, nCrimeSets);
     
-    //cout << nCrimeSets << endl;
+    cout << nCrimeSets << endl;
     
+    
+    CrimeSet resultado; // CrimeSet final resultante
+
     // Loop for every CrimeSet in the dynamic array
-            // Normalize the CrimeSet (normalize each Crime in the CrimeSet)
-            // Select only those Crimes with a valid location (discard all with invalid location)
-            // Select only those Crimes where Shotting =="1"
-   
-    
-    // Make the fusion of all the CrimeSets in the array
+    for (int i = 0; i < nCrimeSets; i++) {
+        // Normalize the CrimeSet (normalize each Crime in the CrimeSet)
+        arrayCrimeSet[i].normalize();
+
+        // Select only those Crimes with a valid location (discard all with invalid location)
+        CrimeSet validos = arrayCrimeSet[i].selectValidLocation();
+
+        // Select only those Crimes where Shotting =="1"
+        CrimeSet solo_shooting = validos.selectWhereEQ("Shooting", "1");
+
+        // Make the fusion of all the CrimeSets in the array
+        resultado.join(solo_shooting);
+    }
+
+    // Añadir el comentario al resultado final
+    std::string comentario;//TRABAJA
+    resultado.setComment(comentario);
     
     // Sort the array of the resulting CrimeSet
+    
+    resultado.sort();
+    
     // Save the CrimeSet in the output crm file 
-
+    
+    resultado.save(outputFileName);
+    
+    fentrada.close();
+    
+    DeallocateArrayCrimeSet(arrayCrimeSet);
+    
 }
