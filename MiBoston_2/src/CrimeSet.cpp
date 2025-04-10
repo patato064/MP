@@ -78,7 +78,7 @@ bool CrimeSet::append(const Crime & crime){
     }
     
     if (!encontrado){
-        _crimes[_nCrimes + 1] = crime;
+        _crimes[_nCrimes] = crime;
         _nCrimes++;
     }
     
@@ -132,7 +132,7 @@ void CrimeSet::load(const std::string & fileName){
         
         fentrada >> _nCrimes;
         
-        for (int i = 0; i < _nCrimes;){
+        for (int i = 0; i < _nCrimes; i++){
             
             string crimen_actual;
             
@@ -153,8 +153,11 @@ void CrimeSet::save(const std::string & fileName){
     ofstream fsalida;
     
     fsalida.open(fileName);
-    fsalida << this->toString();
+    fsalida << MAGIC_STRING_T << endl;
     saveComments(fsalida);
+    
+    fsalida << this->toString();
+    
     fsalida.close();
 }
 
@@ -190,17 +193,21 @@ void CrimeSet::computeHistogram(int dataField, int histogram[]) const{
 
     if (dataField == 0){
         for (int j = 0; j < _nCrimes; j++){
-
-            if (_crimes[j].getDateTime().weekDay() == j){
-            histogram[j]++;
+            
+            int dia = _crimes[j].getDateTime().weekDay();
+            
+            if (dia >= 0 && dia <= 7){
+                histogram[dia]++;
             }
         }
     }
     else{
         for (int k = 0; k < _nCrimes; k++){
-
-            if (_crimes[k].getDateTime().hour() == k){
-            histogram[k]++;
+            
+            int hora = _crimes[k].getDateTime().hour();
+            
+            if (hora >= 0 && hora <= 23){
+                histogram[hora]++;
             }
         }
     }

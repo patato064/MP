@@ -89,10 +89,15 @@ int main(int argc, char* argv[]) {
 
     // Check if the number of arguments is valid.
     
-    
-    if (argc != 2 || argc != 3){
+    string inputFileName = argv[1];
+    if (argc != 2 && argc != 3){
         
         showHelp(cerr);
+    }
+    
+    if (argc == 3){
+        
+        outputFileName = argv[2];
     }
     
     
@@ -109,8 +114,7 @@ int main(int argc, char* argv[]) {
     
     ReadArrayCrimeSet(fentrada, arrayCrimeSet, nCrimeSets);
     
-    cout << nCrimeSets << endl;
-    
+    //cout << nCrimeSets << endl;
     
     CrimeSet resultado; // CrimeSet final resultante
 
@@ -130,7 +134,8 @@ int main(int argc, char* argv[]) {
     }
 
     // Añadir el comentario al resultado final
-    std::string comentario;//TRABAJA
+    std::string comentario;
+    comentario= "Fusion of the crm files whose names are in the file: " + inputFileName;
     resultado.setComment(comentario);
     
     // Sort the array of the resulting CrimeSet
@@ -145,4 +150,5 @@ int main(int argc, char* argv[]) {
     
     DeallocateArrayCrimeSet(arrayCrimeSet);
     
+    return 0;
 }

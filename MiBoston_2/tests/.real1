@@ -1,12 +1,4 @@
 %%%OUTPUT
-ERROR in boston2 parameters
-Run with the following arguments:
-boston2 <inputFile.txt> [<outputFile.crm>]
-
-Parameters:
-<inputFile.txt>: name of the input text file that contains the names of the crm files
-<outputFile.crm>: name of the output crm file (tests/output/output.crm by default)
-
-terminate called after throwing an instance of 'std::out_of_range'
-  what():  basic_string::at: __n (which is 18446744073709551615) >= this->size() (which is 0)
+terminate called after throwing an instance of 'std::logic_error'
+  what():  basic_string::_M_construct null not valid
 Aborted (core dumped)

@@ -1,55 +1,45 @@
-==5449== Memcheck, a memory error detector
-==5449== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==5449== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==5449== Command: /home/mp/Escritorio/MP/Boston/MiBoston_2/dist/Debug/GNU-Linux/miboston_2 data/input03.b2in tests/output/output.crm
-==5449== 
-ERROR in boston2 parameters
-Run with the following arguments:
-boston2 <inputFile.txt> [<outputFile.crm>]
-
-Parameters:
-<inputFile.txt>: name of the input text file that contains the names of the crm files
-<outputFile.crm>: name of the output crm file (tests/output/output.crm by default)
-
-terminate called after throwing an instance of 'std::out_of_range'
-  what():  basic_string::at: __n (which is 18446744073709551615) >= this->size() (which is 0)
-==5449== 
-==5449== Process terminating with default action of signal 6 (SIGABRT)
-==5449==    at 0x5407438: raise (raise.c:54)
-==5449==    by 0x5409039: abort (abort.c:89)
-==5449==    by 0x4EC984C: __gnu_cxx::__verbose_terminate_handler() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
-==5449==    by 0x4EC76B5: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
-==5449==    by 0x4EC7700: std::terminate() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
-==5449==    by 0x4EC7918: __cxa_throw (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
-==5449==    by 0x4EF03F6: std::__throw_out_of_range_fmt(char const*, ...) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
-==5449==    by 0x4F599DE: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::at(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
-==5449==    by 0x407484: CrimeSet::setComment(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) (CrimeSet.cpp:43)
-==5449==    by 0x40A69F: main (main.cpp:134)
-==5449== 
-==5449== HEAP SUMMARY:
-==5449==     in use at exit: 1,169,972 bytes in 10 blocks
-==5449==   total heap usage: 60,023 allocs, 60,013 frees, 2,949,151 bytes allocated
-==5449== 
-==5449== 144 bytes in 1 blocks are possibly lost in loss record 6 of 10
-==5449==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==5449==    by 0x4EC641F: __cxa_allocate_exception (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
-==5449==    by 0x4EF03CA: std::__throw_out_of_range_fmt(char const*, ...) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
-==5449==    by 0x4F599DE: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::at(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
-==5449==    by 0x407484: CrimeSet::setComment(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) (CrimeSet.cpp:43)
-==5449==    by 0x40A69F: main (main.cpp:134)
-==5449== 
-==5449== LEAK SUMMARY:
-==5449==    definitely lost: 0 bytes in 0 blocks
-==5449==    indirectly lost: 0 bytes in 0 blocks
-==5449==      possibly lost: 144 bytes in 1 blocks
-==5449==    still reachable: 1,169,828 bytes in 9 blocks
-==5449==                       of which reachable via heuristic:
-==5449==                         stdstring          : 107 bytes in 1 blocks
-==5449==                         newarray           : 1,088,088 bytes in 1 blocks
-==5449==         suppressed: 0 bytes in 0 blocks
-==5449== Reachable blocks (those to which a pointer was found) are not shown.
-==5449== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==5449== 
-==5449== For counts of detected and suppressed errors, rerun with: -v
-==5449== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
-Aborted (core dumped)
+==12083== Memcheck, a memory error detector
+==12083== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==12083== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==12083== Command: /home/mp/Escritorio/MP/Boston/MiBoston_2/dist/Debug/GNU-Linux/miboston_2 data/input03.b2in tests/output/output.crm
+==12083== 
+==12083== Invalid read of size 8
+==12083==    at 0x4F5936E: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
+==12083==    by 0x4F596E8: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
+==12083==    by 0x403BCF: CrimeSet::operator=(CrimeSet const&) (in /home/mp/Escritorio/MP/Boston/MiBoston_2/dist/Debug/GNU-Linux/miboston_2)
+==12083==    by 0x4037EF: AppendCrimeArrayCrimeSet(CrimeSet*&, int&, CrimeSet const&) (ArrayCrimeSetFunctions.cpp:77)
+==12083==    by 0x403415: ReadArrayCrimeSet(std::istream&, CrimeSet*&, int&) (ArrayCrimeSetFunctions.cpp:41)
+==12083==    by 0x40A5BD: main (main.cpp:115)
+==12083==  Address 0x8 is not stack'd, malloc'd or (recently) free'd
+==12083== 
+==12083== 
+==12083== Process terminating with default action of signal 11 (SIGSEGV)
+==12083==  Access not within mapped region at address 0x8
+==12083==    at 0x4F5936E: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
+==12083==    by 0x4F596E8: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
+==12083==    by 0x403BCF: CrimeSet::operator=(CrimeSet const&) (in /home/mp/Escritorio/MP/Boston/MiBoston_2/dist/Debug/GNU-Linux/miboston_2)
+==12083==    by 0x4037EF: AppendCrimeArrayCrimeSet(CrimeSet*&, int&, CrimeSet const&) (ArrayCrimeSetFunctions.cpp:77)
+==12083==    by 0x403415: ReadArrayCrimeSet(std::istream&, CrimeSet*&, int&) (ArrayCrimeSetFunctions.cpp:41)
+==12083==    by 0x40A5BD: main (main.cpp:115)
+==12083==  If you believe this happened as a result of a stack
+==12083==  overflow in your program's main thread (unlikely but
+==12083==  possible), you can try to increase the size of the
+==12083==  main thread stack using the --main-stacksize= flag.
+==12083==  The main thread stack size used in this run was 8388608.
+==12083== 
+==12083== HEAP SUMMARY:
+==12083==     in use at exit: 1,178,514 bytes in 12 blocks
+==12083==   total heap usage: 18,016 allocs, 18,004 frees, 1,547,350 bytes allocated
+==12083== 
+==12083== LEAK SUMMARY:
+==12083==    definitely lost: 0 bytes in 0 blocks
+==12083==    indirectly lost: 0 bytes in 0 blocks
+==12083==      possibly lost: 0 bytes in 0 blocks
+==12083==    still reachable: 1,178,514 bytes in 12 blocks
+==12083==         suppressed: 0 bytes in 0 blocks
+==12083== Reachable blocks (those to which a pointer was found) are not shown.
+==12083== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==12083== 
+==12083== For counts of detected and suppressed errors, rerun with: -v
+==12083== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+Segmentation fault (core dumped)
