@@ -1,1 +1,0 @@
-Test #10 [tests//9.Integrity09b.test] valgrind --leak-check=full  dist/Debug/GNU-Linux/miboston_2  data/input06.b2in

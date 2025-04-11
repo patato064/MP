@@ -54,7 +54,7 @@ std::string CrimeSet::toString() const{
     
     for (int i = 0; i < _nCrimes; i++){
         
-       recorcholis += _crimes[i].toString() + "\n";
+       recorcholis = recorcholis + _crimes[i].toString() + "\n";
     }
             
     return recorcholis;
@@ -73,11 +73,13 @@ bool CrimeSet::append(const Crime & crime){
     
     while (i < _nCrimes && !encontrado){
         
-        if (_crimes[i].getId() == crime.getId()) encontrado = true;
+        if (_crimes[i].getId() == crime.getId()){
+            encontrado = true;
+        }           
         else i++;
     }
     
-    if (!encontrado){
+    if (!encontrado && _nCrimes <= DIM_VECTOR_CRIMES){
         _crimes[_nCrimes] = crime;
         _nCrimes++;
     }
@@ -124,16 +126,24 @@ void CrimeSet::load(const std::string & fileName){
     ifstream fentrada;
     fentrada.open(fileName);
     
-    fentrada >> magica;
+    getline(fentrada, magica);
     
     if (magica == MAGIC_STRING_T){
         
         readComments(fentrada);
-        string num;
         
-        fentrada >> _nCrimes;
-        fentrada.ignore();
-        //_nCrimes = num;
+        string num;
+        getline(fentrada, num);
+        //cout << num << endl;
+        
+        //fentrada >> _nCrimes;
+        //fentrada.ignore();
+        
+        //
+        
+        _nCrimes = stoi(num);
+                
+        cout << _nCrimes << endl;
         
         for (int i = 0; i < _nCrimes; i++){
             
@@ -142,7 +152,7 @@ void CrimeSet::load(const std::string & fileName){
             getline(fentrada, crimen_actual);
             
             if (!crimen_actual.empty()){
-                this->append(Crime(crimen_actual));
+                append(Crime(crimen_actual));
             }
             
         }
@@ -161,7 +171,7 @@ void CrimeSet::save(const std::string & fileName){
     fsalida << MAGIC_STRING_T << endl;
     saveComments(fsalida);
     
-    fsalida << this->toString();
+    fsalida << toString();
     
     fsalida.close();
 }
@@ -170,7 +180,7 @@ void CrimeSet::join(const CrimeSet & crimeSet){
     
     for (int i = 0; i < crimeSet.getSize(); i++){
         
-        this->append(crimeSet.at(i));
+        append(crimeSet.at(i));
     }
 }
 
@@ -281,14 +291,17 @@ void CrimeSet::readComments(std::istream & inputStream){
     
     char c = inputStream.get();
     
+    
     string comentario;
     
     while (c ==  '#'){
         
         string linea;
-        getline (inputStream, linea);
+        getline(inputStream, linea);
         
-        comentario = comentario + linea;
+        
+        
+        comentario = comentario +  linea + '\n';
         
         c = inputStream.get();
     }

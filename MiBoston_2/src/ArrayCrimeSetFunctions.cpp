@@ -19,25 +19,21 @@ using namespace std;
 void ReadArrayCrimeSet(istream &inputStream, CrimeSet * &arrayCrimeSet, 
         int & nCrimeSets){
     
-    bool fin = false;
-    
-    CrimeSet newCrimeSet;
-    
-    while (!fin){
+    string fileName; 
+    while (getline(inputStream, fileName)) {
         
-        string fileName;
-        getline(inputStream, fileName);
-        
-        if (fileName.empty()){
-            fin = true;
-        }
-        else{
-            
-            newCrimeSet.load(fileName);
-            AppendCrimeArrayCrimeSet(arrayCrimeSet, nCrimeSets, newCrimeSet);
-            nCrimeSets++;
-        }
-    }
+       if (!fileName.empty()) {
+           
+           CrimeSet newCrimeSet;
+           newCrimeSet.load(fileName);
+           AppendCrimeArrayCrimeSet(arrayCrimeSet, nCrimeSets, newCrimeSet);
+           nCrimeSets++;
+       } 
+       else {
+           
+       } 
+ 
+    } 
 }
 
 void PrintArrayCrimeSet(const CrimeSet * &arrayCrimeSet, int nCrimeSets){

@@ -127,9 +127,13 @@ int main(int argc, char* argv[]) {
 
         // Select only those Crimes with a valid location (discard all with invalid location)
         CrimeSet validos = arrayCrimeSet[i].selectValidLocation();
+        
+        //cout << validos.getSize() << endl;
 
         // Select only those Crimes where Shotting =="1"
         CrimeSet solo_shooting = validos.selectWhereEQ("Shooting", "1");
+        
+        //cout << solo_shooting.getSize() << endl;
 
         // Make the fusion of all the CrimeSets in the array
         resultado.join(solo_shooting);
@@ -139,6 +143,8 @@ int main(int argc, char* argv[]) {
     std::string comentario;
     comentario= "Fusion of the crm files whose names are in the file: " + inputFileName;
     resultado.setComment(comentario);
+    
+    //cout << resultado.getSize() << endl;
     
     // Sort the array of the resulting CrimeSet
     
