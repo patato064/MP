@@ -50,11 +50,16 @@ void CrimeSet::setComment(std::string & text) {
 
 std::string CrimeSet::toString() const{
     
-    string recorcholis = to_string(_nCrimes) + "\n";
+    string recorcholis = to_string(_nCrimes) + '\n';
     
     for (int i = 0; i < _nCrimes; i++){
         
-       recorcholis = recorcholis + _crimes[i].toString() + "\n";
+       recorcholis += _crimes[i].toString();
+       
+       if (i != _nCrimes-1){
+           
+           recorcholis+= '\n';
+       }
     }
             
     return recorcholis;
@@ -71,6 +76,7 @@ bool CrimeSet::append(const Crime & crime){
     bool encontrado = false;
     int i = 0;
     
+    
     while (i < _nCrimes && !encontrado){
         
         if (_crimes[i].getId() == crime.getId()){
@@ -79,7 +85,7 @@ bool CrimeSet::append(const Crime & crime){
         else i++;
     }
     
-    if (!encontrado && _nCrimes <= DIM_VECTOR_CRIMES){
+    if (!encontrado && _nCrimes < DIM_VECTOR_CRIMES){
         _crimes[_nCrimes] = crime;
         _nCrimes++;
     }
@@ -134,25 +140,23 @@ void CrimeSet::load(const std::string & fileName){
         
         string num;
         getline(fentrada, num);
-        //cout << num << endl;
         
-        //fentrada >> _nCrimes;
-        //fentrada.ignore();
+        int num_crimes = stoi(num);
         
-        //
         
-        _nCrimes = stoi(num);
-                
-        cout << _nCrimes << endl;
-        
-        for (int i = 0; i < _nCrimes; i++){
+        for (int i = 0; i < num_crimes; i++){
             
             string crimen_actual;
             
             getline(fentrada, crimen_actual);
             
+            
             if (!crimen_actual.empty()){
-                append(Crime(crimen_actual));
+                
+               Crime crimen(crimen_actual);
+               
+               
+               this->append(crimen);
             }
             
         }
@@ -180,7 +184,8 @@ void CrimeSet::join(const CrimeSet & crimeSet){
     
     for (int i = 0; i < crimeSet.getSize(); i++){
         
-        append(crimeSet.at(i));
+       this->append(crimeSet.at(i));
+       
     }
 }
 

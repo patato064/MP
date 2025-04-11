@@ -362,11 +362,13 @@ void Trim(string & myString) {
     
     // Eliminar espacios y tabulaciones al principio
     
-    size_t start = myString.find_first_not_of(" ");
+    size_t start = 0;
+    while (start < myString.length() && isspace(myString.at(start))) start++;
     
     // Eliminar espacios y tabulaciones al final
     
-    size_t end = myString.find_last_not_of(" ");
+    size_t end = myString.length();
+    while (end > start && isspace(myString[end-1])) end--;
     
     // Crear subcadena que contenga solo los caracteres relevantes
     
@@ -396,32 +398,32 @@ void Normalize(Crime & crime) {
     field = crime.getGroup();
     Capitalize (field);
     Trim(field);
-    crime.setId(field);
+    crime.setGroup(field);
     
     field = crime.getDescription();
     Capitalize (field);
     Trim(field);
-    crime.setId(field);
+    crime.setDescription(field);
     
     field = crime.getDistrict();
     Capitalize (field);
     Trim(field);
-    crime.setId(field);
+    crime.setDistrict(field);
     
     field = crime.getStreet();
     Capitalize (field);
     Trim(field);
-    crime.setId(field);
+    crime.setStreet(field);
     
     field = crime.getCode();
     Capitalize (field);
     Trim(field);
-    crime.setId(field);
+    crime.setCode(field);
     
     field = crime.getAreaReport();
     Capitalize (field);
     Trim(field);
-    crime.setId(field);
+    crime.setAreaReport(field);
     
 }
 

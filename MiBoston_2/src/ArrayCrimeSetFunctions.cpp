@@ -20,14 +20,15 @@ void ReadArrayCrimeSet(istream &inputStream, CrimeSet * &arrayCrimeSet,
         int & nCrimeSets){
     
     string fileName; 
-    while (getline(inputStream, fileName)) {
+    while (getline(inputStream, fileName)) {        
         
        if (!fileName.empty()) {
            
            CrimeSet newCrimeSet;
            newCrimeSet.load(fileName);
+           
            AppendCrimeArrayCrimeSet(arrayCrimeSet, nCrimeSets, newCrimeSet);
-           nCrimeSets++;
+           
        } 
        else {
            
@@ -68,4 +69,5 @@ void AppendCrimeArrayCrimeSet(CrimeSet * &arrayCrimeSet, int &nCrimeSets,
     delete[] arrayCrimeSet;
     arrayCrimeSet = auxiliar;
     
+    nCrimeSets++;
 }

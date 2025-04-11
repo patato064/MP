@@ -116,35 +116,36 @@ int main(int argc, char* argv[]) {
     
     ReadArrayCrimeSet(fentrada, arrayCrimeSet, nCrimeSets);
     
-    //cout << nCrimeSets << endl;
-    
     CrimeSet resultado; // CrimeSet final resultante
-
-    // Loop for every CrimeSet in the dynamic array
-    for (int i = 0; i < nCrimeSets; i++) {
-        // Normalize the CrimeSet (normalize each Crime in the CrimeSet)
+            
+    /*for (int i = 0; i < nCrimeSets; i++){
+        cout << arrayCrimeSet[i].toString() << endl;
+    }*/
+    
+    //Loop for every CrimeSet in the dynamic array
+            
+    for (int i = 0; i < nCrimeSets; i++){
+        
         arrayCrimeSet[i].normalize();
-
-        // Select only those Crimes with a valid location (discard all with invalid location)
-        CrimeSet validos = arrayCrimeSet[i].selectValidLocation();
         
-        //cout << validos.getSize() << endl;
-
-        // Select only those Crimes where Shotting =="1"
-        CrimeSet solo_shooting = validos.selectWhereEQ("Shooting", "1");
+        arrayCrimeSet[i] = arrayCrimeSet[i].selectValidLocation();
         
-        //cout << solo_shooting.getSize() << endl;
-
-        // Make the fusion of all the CrimeSets in the array
-        resultado.join(solo_shooting);
+        arrayCrimeSet[i] = arrayCrimeSet[i].selectWhereEQ("Shooting", "1");
     }
-
+    
+    for (int i = 0; i < nCrimeSets; i++){
+        
+        resultado.join(arrayCrimeSet[i]);
+    }
+    
+    
     // Añadir el comentario al resultado final
     std::string comentario;
     comentario= "Fusion of the crm files whose names are in the file: " + inputFileName;
-    resultado.setComment(comentario);
     
-    //cout << resultado.getSize() << endl;
+    
+    FormatAsComment(comentario);
+    resultado.setComment(comentario);
     
     // Sort the array of the resulting CrimeSet
     
@@ -152,11 +153,15 @@ int main(int argc, char* argv[]) {
     
     // Save the CrimeSet in the output crm file 
     
+    cout << resultado.toString() << endl;
+    
     resultado.save(outputFileName);
     
     fentrada.close();
     
     DeallocateArrayCrimeSet(arrayCrimeSet);
     
+    
+     
     return 0;
 }
