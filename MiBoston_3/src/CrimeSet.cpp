@@ -21,7 +21,36 @@ const float  CrimeSet::GROWING_RATIO = 1.5;
 
 // MODIFICAR PARA INCLUIR TODO LO QUE VIENE EN CrimeSet.h
 
-CrimeSet::CrimeSet():_comment(""), _nCrimes(0){}
+CrimeSet::CrimeSet(int size){ //LLAMAR a allocate con el valor adecuado e inicializar size=0
+    
+    allocate(INITIAL_CAPACITY);
+    _nCrimes = size;
+}
+
+CrimeSet::CrimeSet(const CrimeSet &orig){ // llamar a allocate() y llamar a copy()
+    
+    allocate (orig.getCapacity());
+    copy(orig);
+}
+
+CrimeSet::~CrimeSet(){ //llamar a deallocate()
+    
+    deallocate();
+}
+
+CrimeSet& CrimeSet::operator=(const CrimeSet & orig){ 
+    
+    if (this != & orig){
+        
+        deallocate();
+        
+        allocate(orig.getCapacity());
+        
+        copy(orig);
+    }
+    
+    return *this;
+}
 
 int CrimeSet::getSize() const{
     
@@ -68,13 +97,15 @@ std::string CrimeSet::toString() const{
     return recorcholis;
 }
 
-void CrimeSet::clear(){
+void CrimeSet::clear(){  // REVISAR
+    
+    deallocate();
     
     _comment = "";
     _nCrimes = 0;
 }
 
-bool CrimeSet::append(const Crime & crime){
+bool CrimeSet::append(const Crime & crime){  //REVISAR (REDIMENSIONAR CUANDO NO QUEPA)
     
     bool encontrado = false;
     int i = 0;
@@ -88,7 +119,12 @@ bool CrimeSet::append(const Crime & crime){
         else i++;
     }
     
-    if (!encontrado && _nCrimes < _capacity){
+    if (!encontrado){
+        
+        if(_nCrimes >= _capacity){
+            reallocate();
+        }
+        
         _crimes[_nCrimes] = crime;
         _nCrimes++;
     }
@@ -129,11 +165,13 @@ int CrimeSet::findCrime(const Crime & crime) const{
     return findCrime(crime, 0, _nCrimes -1);
 }
 
-void CrimeSet::load(const std::string & fileName){
+void CrimeSet::load(const std::string & fileName){ // REVISAR
     
     string magica;
     
     this-> clear();
+    
+    allocate(INITIAL_CAPACITY);
     
     ifstream fentrada;
     fentrada.open(fileName);
@@ -173,7 +211,7 @@ void CrimeSet::load(const std::string & fileName){
 }
 
 
-void CrimeSet::save(const std::string & fileName){
+void CrimeSet::save(const std::string & fileName){ 
     
     ofstream fsalida;
     
@@ -286,6 +324,62 @@ void CrimeSet::sort(){
 
 
 // Métodos Privados de la clase CrimeSet
+
+// HACER METODO ALLOCATE PARA RESERVAR MEMORIA DINAMICA para usar en el constructor, constructor de copia, operador de asignación y clear()
+    void CrimeSet::allocate(int capacidad){
+        
+        _crimes = nullptr;
+        if (capacidad > 0){
+            _crimes = new Crime[capacidad];
+        }
+        
+        _capacity = capacidad;
+    }
+
+// HACER METODO PARA LIBERAR MEMORIA DINAMICA QUE TIENE RESERVADA UN OBJETO DE LA CLASE CRIMESET para usar en el destructor, operador de asignacion y clear()
+    void CrimeSet::deallocate(){
+        
+        delete[] _crimes;
+        _crimes = nullptr;
+        _capacity = 0;
+    }
+
+// HACER METODO PARA COPIAR EL CONTENIDO DE UN OBJETO CRIMESET EN EL OBJETO IMPLICITO sin reservar ni 
+// liberar memoria. para que funcione nos tenemos que asegurar que el oi tiene un array dinamico del mismo tamaño que el objeto a copiar. para usar en el constructor de copia y operador de asignacion
+    void CrimeSet::copy(const CrimeSet &original){
+        
+        if (original.getCapacity() <= this->getCapacity()){ // No se utiliza el clear porque libera memoria dinámica
+            
+             _comment = "";
+            _nCrimes = 0;
+            
+            for (int i = 0; i < original.getSize(); i++){ // No se utiliza el append porque puede reservar memoria diámica
+                
+                this->.at(i) = original.at(i);
+                _nCrimes++;
+            }
+            
+            _comment = original.getComment();
+        }
+    }
+
+// HACER UN METODO PARA REDIMENSIONAR EL ARRAY DINAMICO para usar en el append()
+    void CrimeSet::reallocate(){
+        
+        _capacity *= GROWING_RATIO;
+                
+        Crime* auxiliar = new Crime[_capacity];
+        
+        for(int i = 0; i < _nCrimes; i++){
+            
+            auxiliar[i] = _crimes[i];
+        }
+        
+        delete[] _crimes;
+        
+        _crimes = auxiliar;
+        
+    }
 
     Crime & CrimeSet::at (int pos){
     
