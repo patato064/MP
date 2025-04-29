@@ -38,14 +38,17 @@ std::string CrimeSet::getComment() const{
     return _comment;
 }
 
-void CrimeSet::setComment(std::string & text) {
+void CrimeSet::setComment(const std::string & text) {
     
-    if (text.at(text.length()-1) != '\n' && text != ""){
+    if (text != ""){
         
-        text.append ("\n");
+        if (text.at(text.length()-1) != '\n' && text != ""){
+            _comment = text + "\n";
+        }
+        else{
+        _comment = text;
+        }
     }
-    
-    _comment = text;
 }
 
 std::string CrimeSet::toString() const{
@@ -108,10 +111,13 @@ int CrimeSet::findCrime(const Crime & crime, int initialPos, int finalPos) const
     int pos = initialPos;
     bool encontrado = false;
     
-    while (pos <= finalPos && !encontrado){
-        
-        if (crime.getId() == _crimes[pos].getId()) encontrado = true;
-        else pos++;
+    
+    if (initialPos < 0 || finalPos >= _nCrimes || initialPos > finalPos){
+        while (pos <= finalPos && !encontrado){
+
+            if (crime.getId() == _crimes[pos].getId()) encontrado = true;
+            else pos++;
+        }
     }
     
     if (!encontrado) pos = -1;

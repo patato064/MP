@@ -28,11 +28,7 @@ void ReadArrayCrimeSet(istream &inputStream, CrimeSet * &arrayCrimeSet,
            newCrimeSet.load(fileName);
            
            AppendCrimeArrayCrimeSet(arrayCrimeSet, nCrimeSets, newCrimeSet);
-           
-       } 
-       else {
-           
-       } 
+       }
  
     } 
 }

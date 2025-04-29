@@ -86,7 +86,7 @@ public:
      * Modifier method
      * @param text string with several lines of comments. Input parameter
      */
-    void setComment(std::string & text);
+    void setComment(const std::string & text);
 
     /**
      * @brief Obtains a string with information about this CrimeSet object, 
