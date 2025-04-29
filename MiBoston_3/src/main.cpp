@@ -6,8 +6,8 @@
 
 /** 
  * @file   main.cpp
- * @author estudiante1: apellidos*, nombre*
- * @author estudiante2: apellidos*, nombre* (solo si procede)  
+ * @author estudiante1: Salvador Gil, Sergio
+ * @author estudiante2: Gil Casado, Nestor Eloy
  */
 
 #include <string>
