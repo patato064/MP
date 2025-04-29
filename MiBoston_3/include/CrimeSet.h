@@ -78,7 +78,7 @@ public:
      * @p orig.   
      * @param orig CrimeSet original. Input parameter
      */
-    CrimeSet(CrimeSet orig);
+    CrimeSet(const CrimeSet &orig);
     
     /**
      * @brief Destructor
@@ -92,20 +92,15 @@ public:
      * Input parameter
      * @return A reference to this object
      */
-    CrimeSet operator=(CrimeSet orig);
+    CrimeSet operator=(const CrimeSet & orig);
     
     /**
      * @brief Basic constructor and initializer. It builds a CrimeSet object
      * with a set of 0 Crimes and a capacity of DIM_VECTOR_CRIMES. The field for
      * the comments is set as an empty string
      */
-    CrimeSet();
     
-    /**
-     * @brief Returns the number of crimes stored in the set. 
-     * Query method
-     * @return The number of crimes. Positive integer.
-     */
+    
     int getSize() const;
     
     /**
@@ -360,7 +355,17 @@ private:
      * @throw std::out_of_range Throws an std::out_of_range exception if the 
      * given pos is not valid
      * @return A reference to the Crime at the given position.
+     * 
      */
+    
+    void allocate (int capacidad);
+    
+    void deallocate();
+    
+    void copy(const CrimeSet &original);
+    
+    void CrimeSet::reallocate();
+    
     Crime & at(int pos);
     
     /**
