@@ -52,7 +52,7 @@ public:
      // 
 
     /**
-     * @brief Basicructor and initializer. It builds a CrimeSet object
+     * @brief Basic constructor and initializer. It builds a CrimeSet object
      * with a set of of 0 Crimes and a capacity calculated as follows: 
      * - If size>=0 and size<INITIAL_CAPACITY, then the capacity of the
      * dynamic array will be set to INITIAL_CAPACITY. 
@@ -68,7 +68,8 @@ public:
      * - _crimes = nullptr 
      * After the fields are initialized as described above, the exception 
      * is thrown.
-     * @param size The number of Crimes that will have the set
+     * @param size The capacity that will have the dynamic array of Crimes
+     * for this object
      */
     CrimeSet(int size=0);
     
