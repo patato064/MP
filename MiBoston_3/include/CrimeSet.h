@@ -92,7 +92,7 @@ public:
      * Input parameter
      * @return A reference to this object
      */
-    CrimeSet operator=(const CrimeSet & orig);
+    CrimeSet & operator=(const CrimeSet & orig);
     
     /**
      * @brief Basic constructor and initializer. It builds a CrimeSet object
@@ -364,7 +364,7 @@ private:
     
     void copy(const CrimeSet &original);
     
-    void CrimeSet::reallocate();
+    void reallocate();
     
     Crime & at(int pos);
     

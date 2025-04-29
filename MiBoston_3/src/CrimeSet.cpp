@@ -355,7 +355,7 @@ void CrimeSet::sort(){
             
             for (int i = 0; i < original.getSize(); i++){ // No se utiliza el append porque puede reservar memoria diámica
                 
-                this->.at(i) = original.at(i);
+                this->at(i) = original.at(i);
                 _nCrimes++;
             }
             
