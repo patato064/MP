@@ -78,15 +78,66 @@ int main(int argc, char* argv[]) {
     string outputFileName = "tests/output/output.crm"; // Name of the output crm file
     string comments = "Fusion of the following crm files: \n"; // Comments for the result of fusion
 
-   
+    bool opcional = false;
+    
     // Process program arguments
     
+    if (argc < 2){
+        
+        showHelp(cerr);
+        return 0;
+    }
+    
+    if (argv[1][0] == '-' ){
+        
+        if (string(argv[1]) != "-o" || argc < 4){
+            
+            showHelp(cerr);
+            return 1;
+        }
+        
+        else{
+            outputFileName = argv[2];
+            opcional = true;
+        }
+    }
+    
+    
     // for every file from the main arguments
+    
+    int pos_inicio = 1; // nos aseguramos de que la posición en el que inicia el for sea la correcta
+    
+    if (opcional){ // si hay parámetro opcional, la posición inicial cambia
+        pos_inicio = 3;
+    }
+    
+    CrimeSet crimenes;
+    
+    for (int i = pos_inicio; i < argc; i++){
+        
+        CrimeSet dentro;
+        
         // load the file
+        
+        dentro.load(argv[i]);
+        
         // do the fusion 
+        
+        crimenes.join(dentro);
+        
         // compose the comment
+        
+        comments += string(argv[i]) + "\n";
+        
+    }
 
     // set the comments, normalize, sort and save
+    
+    crimenes.setComment(comments);
+    
+    crimenes.normalize();
+    crimenes.sort();
+    crimenes.save(outputFileName);
     
     return 0;
 }
