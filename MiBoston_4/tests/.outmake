@@ -1,0 +1,25 @@
+"make" -f nbproject/Makefile-Debug.mk QMAKE= SUBPROJECTS= .build-conf
+make[1]: se entra en el directorio '/home/mp/Escritorio/MP/Boston/MiBoston_4'
+"make"  -f nbproject/Makefile-Debug.mk dist/Debug/GNU-Linux/boston4
+make[2]: se entra en el directorio '/home/mp/Escritorio/MP/Boston/MiBoston_4'
+mkdir -p build/Debug/GNU-Linux/src
+rm -f "build/Debug/GNU-Linux/src/Color.o.d"
+g++ -Wall -pedantic   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/Debug/GNU-Linux/src/Color.o.d" -o build/Debug/GNU-Linux/src/Color.o src/Color.cpp
+mkdir -p build/Debug/GNU-Linux/src
+rm -f "build/Debug/GNU-Linux/src/ColorPalette.o.d"
+g++ -Wall -pedantic   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/Debug/GNU-Linux/src/ColorPalette.o.d" -o build/Debug/GNU-Linux/src/ColorPalette.o src/ColorPalette.cpp
+mkdir -p build/Debug/GNU-Linux/src
+rm -f "build/Debug/GNU-Linux/src/Coordinates.o.d"
+g++ -Wall -pedantic   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/Debug/GNU-Linux/src/Coordinates.o.d" -o build/Debug/GNU-Linux/src/Coordinates.o src/Coordinates.cpp
+In file included from src/Coordinates.cpp:12:0:
+include/Coordinates.h:15:0: error: unterminated #ifndef
+ #ifndef COORDINATES_H
+ ^
+nbproject/Makefile-Debug.mk:83: fallo en las instrucciones para el objetivo 'build/Debug/GNU-Linux/src/Coordinates.o'
+make[2]: *** [build/Debug/GNU-Linux/src/Coordinates.o] Error 1
+make[2]: se sale del directorio '/home/mp/Escritorio/MP/Boston/MiBoston_4'
+nbproject/Makefile-Debug.mk:66: fallo en las instrucciones para el objetivo '.build-conf'
+make[1]: *** [.build-conf] Error 2
+make[1]: se sale del directorio '/home/mp/Escritorio/MP/Boston/MiBoston_4'
+nbproject/Makefile-impl.mk:39: fallo en las instrucciones para el objetivo '.build-impl'
+make: *** [.build-impl] Error 2
