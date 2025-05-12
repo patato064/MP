@@ -334,7 +334,7 @@ public:
      * @param index index of the element 
      * @return Aant reference to the Crime object at position @p index
      */
-    Crime operator[](int index);   
+    const Crime & operator[](int index) const;   
 
     /**
      * @brief Overloads the operator += for the CrimeSet class. It appends to 
@@ -344,10 +344,10 @@ public:
      * @param other The right CrimeSet operand. Input parameter
      * @return A reference to this object
      */
-    CrimeSet operator+=(CrimeSet other);
+    CrimeSet operator+=(CrimeSet & other);
     
-    friend std::ostream operator<<(std::ostream os, CrimeSet crimeSet);
-    friend std::istream operator>>(std::istream is, CrimeSet crimeSet);
+    friend std::ostream &operator<<(std::ostream & os,const CrimeSet & crimeSet);
+    friend std::istream &operator>>(std::istream & is,const CrimeSet & crimeSet);
     
 private:
     
@@ -432,7 +432,7 @@ private:
      * @param index index of the element 
      * @return A  reference to the Crime object at position @p index
      */
-    Crime operator[](int index);
+    Crime & operator[](int index);
     
     
 
@@ -445,7 +445,7 @@ private:
  * @param crimeSet the CrimeSet object. Input parameter
  * @return @p os A reference to the output stream
  */
-std::ostream operator<<(std::ostream os, const CrimeSet crimeSet);
+std::ostream &operator<<(std::ostream &os, const CrimeSet &crimeSet);
 
 /**
  * @brief Overloading of the stream extraction operator for CrimeSet class.
@@ -464,6 +464,6 @@ std::ostream operator<<(std::ostream os, const CrimeSet crimeSet);
  * @param crimeSet The CrimeSet object to be filled. Input/output parameter
  * @return @p is A reference to the input stream
  */
-std::istream  operator>>(std::istream is, CrimeSet crimeSet);
+std::istream  &operator>>(std::istream &is, const CrimeSet &crimeSet);
 #endif	// CRIMESET_H
 

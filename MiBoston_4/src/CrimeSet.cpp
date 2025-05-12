@@ -551,3 +551,33 @@ int PosMinArrayCrimes(const Crime array[], int initialPos, int finalPos) {
     
     return pos_minimo;
 }
+
+//METODOS NUEVOS DE BOSTON 4
+//El operador [] publico:
+const Crime& CrimeSet::operator[](int index) const{
+    if(index >= 0 && index <= _nCrimes){
+        return _crimes[index];
+    } 
+}
+
+//Sobrecarga del +=
+CrimeSet & CrimeSet::operator+=(const CrimeSet & other){
+    return this->append(other);
+}
+
+//Sobrecarga del operador <<
+friend std::ostream &operator<<(std::ostream &os, const CrimeSet &crimeSet){
+    
+}
+
+//Sobrecargada del operador >>
+friend std::istream &operator>>(std::istream &is, const CrimeSet &crimeSet){
+    
+}
+
+//El operador [] privado:
+Crime & CrimeSet::operator[](int index){
+    if(index >= 0 && index <= _nCrimes){
+        return _crimes[index];
+    } 
+}
