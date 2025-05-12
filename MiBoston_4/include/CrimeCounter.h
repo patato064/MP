@@ -287,6 +287,8 @@ public:
     
 private:
     
+    // HACER allocate, deallocate y copy para luego hacer el constructor de copia, destructor, asignación...
+    
     /**
      * Integer constant with the default number of rows in the matrix of 
      * frequencies

@@ -347,7 +347,7 @@ public:
     CrimeSet operator+=(CrimeSet & other);
     
     friend std::ostream &operator<<(std::ostream & os,const CrimeSet & crimeSet);
-    friend std::istream &operator>>(std::istream & is,const CrimeSet & crimeSet);
+    friend std::istream &operator>>(std::istream & is, CrimeSet & crimeSet);
     
 private:
     
@@ -464,6 +464,6 @@ std::ostream &operator<<(std::ostream &os, const CrimeSet &crimeSet);
  * @param crimeSet The CrimeSet object to be filled. Input/output parameter
  * @return @p is A reference to the input stream
  */
-std::istream  &operator>>(std::istream &is, const CrimeSet &crimeSet);
+std::istream  &operator>>(std::istream &is, CrimeSet &crimeSet);
 #endif	// CRIMESET_H
 

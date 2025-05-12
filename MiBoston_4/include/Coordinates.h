@@ -221,7 +221,7 @@ std::ostream &operator<<(std::ostream &os, const Coordinates &obj);
  * @param obj The Coordinates object. Output parameter
  * @return @p A reference to the input stream
  */
-std::istream &operator>>(std::istream &is, const Coordinates &obj);
+std::istream &operator>>(std::istream &is, Coordinates &obj);
 
 
 

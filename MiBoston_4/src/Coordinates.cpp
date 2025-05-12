@@ -108,13 +108,15 @@ bool Coordinates::isInsideArea(const Coordinates &bottomLeft, const Coordinates 
         return os;
     }
     
-    std::ostream &operator>>(std::ostream &is, const Coordinates &obj){
+    std::istream &operator>>(std::istream &is, Coordinates &obj){
         
-        float latitude, longitude;
+        float latitud, longitud;
         char coma;
         
-        is >> latitude >> coma >> longitude;
+        is >> latitud ;
+        is >> coma;
+        is >> longitud;
         
-        obj.set(latitude, longitude);
+        obj.set(latitud, longitud);
         return is;
     }

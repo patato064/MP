@@ -481,7 +481,7 @@ void Normalize(Crime & crime);
  * @param crime the Crime object. Input parameter
  * @return @p os A reference to the output stream
  */
-std::ostream operator<<(std::ostream os, Crime crime);
+std::ostream &operator<<(std::ostream &os, const Crime &crime);
 
 /**
  * @brief Overloading of the stream extraction operator for Crime class. It
@@ -491,7 +491,7 @@ std::ostream operator<<(std::ostream os, Crime crime);
  * @param crime the Crime object. Input Output parameter
  * @return @p is the input stream
  */
-std::istream operator>>(std::istream is, Crime crime);
+std::istream &operator>>(std::istream &is, Crime &crime);
 
 /**
  * @brief Overloading of the relational operator < for Crime class

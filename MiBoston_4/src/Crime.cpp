@@ -428,12 +428,12 @@ void Normalize(Crime & crime) {
 }
 
 
-friend std::ostream &operator<<(std::ostream &os, const Crime &crime){
+std::ostream &operator<<(std::ostream &os, const Crime &crime){
     
     os << crime.toString();
     return os;
 }
-friend std::istream &operator>>(std::istream &is, const Crime &crime){
+std::istream &operator>>(std::istream &is,  Crime &crime){
     
     string crimen;
     

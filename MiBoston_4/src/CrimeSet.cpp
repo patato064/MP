@@ -567,12 +567,21 @@ CrimeSet & CrimeSet::operator+=(const CrimeSet & other){
 
 //Sobrecarga del operador <<
 friend std::ostream &operator<<(std::ostream &os, const CrimeSet &crimeSet){
-    
+    os << crimeSet.toString();
+    return os;
 }
 
 //Sobrecargada del operador >>
-friend std::istream &operator>>(std::istream &is, const CrimeSet &crimeSet){
+friend std::istream &operator>>(std::istream &is, CrimeSet &crimeSet){
     
+    crimeSet.clear();
+    
+    string crimenes;
+    is >> crimenes;
+    
+    crimeSet.load(crimenes);
+    
+    return is;
 }
 
 //El operador [] privado:
