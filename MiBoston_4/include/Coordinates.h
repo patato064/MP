@@ -189,8 +189,8 @@ public:
      // the new declarations included here... 
      // 
 
-    friend std::ostream operator<<(std::ostream os, Coordinates obj);
-    friend std::ostream operator>>(std::ostream is, Coordinates obj);
+    friend std::ostream &operator<<(std::ostream &os, const Coordinates &obj);
+    friend std::ostream &operator>>(std::ostream &is, const Coordinates &obj);
 
 private:
         
@@ -209,7 +209,7 @@ private:
  * @param obj The Coordinates object. Input parameter
  * @return @p os A reference to the output stream
  */
-std::ostream operator<<(std::ostream os, Coordinates obj);
+std::ostream &operator<<(std::ostream &os, const Coordinates &obj);
 
 /**
  * @brief Overloading of the stream extraction operator for Coordinates class. 
@@ -221,7 +221,7 @@ std::ostream operator<<(std::ostream os, Coordinates obj);
  * @param obj The Coordinates object. Output parameter
  * @return @p A reference to the input stream
  */
-std::istream operator>>(std::istream is, Coordinates obj);
+std::istream &operator>>(std::istream &is, const Coordinates &obj);
 
 
 
