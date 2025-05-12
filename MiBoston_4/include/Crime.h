@@ -398,10 +398,6 @@ public:
     friend std::istream operator>>(std::istream is, Crime crime);
     
 private:
-     // Retrieve all previous declarations 
-    
-    
-private:
     int _counter; ///< COUNTER: A counter (integer)
     
     /**
@@ -505,7 +501,7 @@ std::istream operator>>(std::istream is, Crime crime);
  * @p crime2 or if both DateTimes are equals and the ID of 
  * @p crime1 is minor than the ID of @p crime2; false otherwise
  */
-bool operator<(Crime crime1, Crime crime2);
+bool operator<(const Crime &crime1, const Crime &crime2);
 
 /**
  * @brief Overloading of the operator > for Crime class. It uses the DateTime
@@ -514,7 +510,7 @@ bool operator<(Crime crime1, Crime crime2);
  * @param crime2 a Crime object. Input parameter
  * @return true if crime1 > crime2; false otherwise
  */
-bool operator>(Crime crime1, Crime crime2);
+bool operator>(const Crime &crime1, const Crime &crime2);
 
 /**
  * @brief Overloading of the operator == for Crime class. It uses the DateTime
@@ -524,7 +520,7 @@ bool operator>(Crime crime1, Crime crime2);
  * @return true if the two Crimes have the same DateTime and ID;
  * false otherwise
  */
-bool operator==(Crime crime1, Crime crime2);
+bool operator==(const Crime &crime1, const Crime &crime2);
 
 /**
  * @brief Overloading of the operator != for Crime class. It uses the DateTime
@@ -534,7 +530,7 @@ bool operator==(Crime crime1, Crime crime2);
  * @return true if the two Crimes are not equals (see operator==); 
  * false otherwise
  */
-bool operator!=(Crime crime1, Crime crime2);
+bool operator!=(const Crime &crime1, const Crime &crime2);
 
 /**
  * @brief Overloading of the operator <= for Crime class. It uses the DateTime
@@ -543,7 +539,7 @@ bool operator!=(Crime crime1, Crime crime2);
  * @param crime2 a Crime object. Input parameter
  * @return true if crime1 <= crime2; false otherwise
  */
-bool operator<=(Crime crime1, Crime crime2);
+bool operator<=(const Crime &crime1, const Crime &crime2);
 
 /**
  * @brief Overloading of the operator >= for Crime class. It uses the DateTime
@@ -552,6 +548,6 @@ bool operator<=(Crime crime1, Crime crime2);
  * @param crime2 a Crime object. Input parameter
  * @return true if crime1 >= crime2; false otherwise
  */
-bool operator>=(Crime crime1, Crime crime2);
+bool operator>=(const Crime &crime1, const Crime &crime2);
 
 #endif /* CRIME_H */

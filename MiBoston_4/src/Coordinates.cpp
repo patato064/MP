@@ -101,3 +101,20 @@ bool Coordinates::isInsideArea(const Coordinates &bottomLeft, const Coordinates 
     
     return esta_dentro;
 }  
+
+    std::ostream &operator<<(std::ostream &os, const Coordinates &obj){
+        
+        os << obj.toString();
+        return os;
+    }
+    
+    std::ostream &operator>>(std::ostream &is, const Coordinates &obj){
+        
+        float latitude, longitude;
+        char coma;
+        
+        is >> latitude >> coma >> longitude;
+        
+        obj.set(latitude, longitude);
+        return is;
+    }

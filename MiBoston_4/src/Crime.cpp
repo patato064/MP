@@ -428,3 +428,60 @@ void Normalize(Crime & crime) {
 }
 
 
+friend std::ostream &operator<<(std::ostream &os, const Crime &crime){
+    
+    os << crime.toString();
+    return os;
+}
+friend std::istream &operator>>(std::istream &is, const Crime &crime){
+    
+    string crimen;
+    
+    is >> crimen;
+    
+    crime.set(crimen);
+    
+    return is;
+}
+
+bool Crime::operator<(const Crime &crime1, const Crime &crime2){
+    
+    bool esMayor=false;
+    
+    if(crime1.getDateTime()<crime2.getDateTime()){
+        esMayor=true;
+    }
+    else if (crime1.getDateTime()==crime2.getDateTime()){
+        
+        if (crime1.getId() < crime2.getId()){
+            esMayor=true;
+        }
+    }
+    
+    return esMayor;        
+}
+
+bool operator>(const Crime &crime1, const Crime &crime2){
+    
+    return crime2 < crime1;
+}
+
+bool operator==(const Crime &crime1, const Crime &crime2){
+    
+    return (crime1.getDateTime()<crime2.getDateTime() && crime1.getDateTime()==crime2.getDateTime());
+}
+
+bool operator!=(const Crime &crime1, const Crime &crime2){
+    
+    return !(crime1==crime2);
+}
+
+bool operator<=(const Crime &crime1, const Crime &crime2){
+    
+    return (crime1<crime2 || crime1==crime2);
+}
+
+bool operator>=(const Crime &crime1, const Crime &crime2){
+    
+    return (crime1>crime2 || crime1==crime2);
+}
