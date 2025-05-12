@@ -22,9 +22,28 @@ const float  CrimeSet::GROWING_RATIO = 1.5;
 // MODIFICAR PARA INCLUIR TODO LO QUE VIENE EN CrimeSet.h
 
 CrimeSet::CrimeSet(int size){ //LLAMAR a allocate con el valor adecuado e inicializar size=0
+
+    if (size < 0){
+        
+        _comment = "";
+        _capacity = 0;
+        _nCrimes = 0;
+        _crimes = nullptr;
+        
+         throw std::out_of_range(
+                std::string("CrimeSet::CrimeSet(int size): ") + 
+                "size debe ser siempre mayor o igual que 0");
+                
+    } 
     
-    allocate(INITIAL_CAPACITY);
-    _nCrimes = size;
+    //    allocate(INITIAL_CAPACITY);
+    else if (size >= 0 && size < INITIAL_CAPACITY) {
+        allocate(INITIAL_CAPACITY);
+    } else if (size >= INITIAL_CAPACITY) {
+        allocate(size);
+    }
+    _nCrimes = 0; //size;
+
 }
 
 CrimeSet::CrimeSet(const CrimeSet &orig){ // llamar a allocate() y llamar a copy()
@@ -148,7 +167,8 @@ int CrimeSet::findCrime(const Crime & crime, int initialPos, int finalPos) const
     bool encontrado = false;
     
     
-    if (initialPos < 0 || finalPos >= _nCrimes || initialPos > finalPos){
+    if (initialPos >= 0 && finalPos < _nCrimes && initialPos <= finalPos){
+            
         while (pos <= finalPos && !encontrado){
 
             if (crime.getId() == _crimes[pos].getId()) encontrado = true;
@@ -176,38 +196,63 @@ void CrimeSet::load(const std::string & fileName){ // REVISAR
     ifstream fentrada;
     fentrada.open(fileName);
     
-    getline(fentrada, magica);
-    
-    if (magica == MAGIC_STRING_T){
+    if (!fentrada.is_open()){
         
-        readComments(fentrada);
-        
-        string num;
-        getline(fentrada, num);
-        
-        int num_crimes = stoi(num);
-        
-        
-        for (int i = 0; i < num_crimes; i++){
-            
-            string crimen_actual;
-            
-            getline(fentrada, crimen_actual);
-            
-            
-            if (!crimen_actual.empty()){
-                
-               Crime crimen(crimen_actual);
-               
-               
-               this->append(crimen);
-            }
-            
-        }
-            
+        throw std::ios_base::failure(
+                std::string("void CrimeSet::load(const std::string & fileName): ") + 
+                "el archivo no ha sido abierto correctamente");
     }
     
-    fentrada.close();
+    else{
+        
+        getline(fentrada, magica);
+
+        if (magica == MAGIC_STRING_T){
+
+            readComments(fentrada);
+
+            string num;
+            getline(fentrada, num);
+
+            int num_crimes = stoi(num);
+            
+            if (num_crimes < 0){
+                
+                throw std::out_of_range(
+                std::string("void CrimeSet::load(const std::string & fileName): ") + 
+                "El número de crímenes no puede ser negativo");
+            }
+
+            else{
+                
+                for (int i = 0; i < num_crimes; i++){
+
+                    string crimen_actual;
+
+                    getline(fentrada, crimen_actual);
+
+
+                    if (!crimen_actual.empty()){
+
+                       Crime crimen(crimen_actual);
+
+
+                       this->append(crimen);
+                    }
+
+                }
+            }
+
+        }
+        
+        else{
+            
+            throw std::invalid_argument (std::string("void CrimeSet::load(const std::string & fileName): ") + 
+                "MAGIC_STRING inválida");
+        }
+
+        fentrada.close();
+    }
 }
 
 
@@ -216,12 +261,23 @@ void CrimeSet::save(const std::string & fileName){
     ofstream fsalida;
     
     fsalida.open(fileName);
-    fsalida << MAGIC_STRING_T << endl;
-    saveComments(fsalida);
     
-    fsalida << toString();
-    
-    fsalida.close();
+    if (!fsalida.is_open()){
+        
+        throw std::ios_base::failure(
+                std::string("void CrimeSet::save(const std::string & fileName): ") + 
+                "el archivo no ha sido abierto correctamente");
+    }
+
+    else{
+        
+        fsalida << MAGIC_STRING_T << endl;
+        saveComments(fsalida);
+
+        fsalida << toString();
+
+        fsalida.close();
+    }
 }
 
 void CrimeSet::join(const CrimeSet & crimeSet){
@@ -383,7 +439,7 @@ void CrimeSet::sort(){
 
     Crime & CrimeSet::at (int pos){
     
-    if (0 > pos || pos >= _nCrimes){
+    if (0 > pos || pos > _nCrimes){
         throw std::out_of_range(std::string("Crime & at(int pos): ") +
                 "La posicion dada no es valida");
     }

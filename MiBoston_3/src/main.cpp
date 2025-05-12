@@ -73,6 +73,8 @@ MP-CRIME-T-1.0
 ,42.333500,-71.073509
  * @return Returns 1 in case of error in program arguments; 0 otherwise
  */
+
+
 int main(int argc, char* argv[]) {
  
     string outputFileName = "tests/output/output.crm"; // Name of the output crm file
@@ -138,6 +140,7 @@ int main(int argc, char* argv[]) {
     crimenes.normalize();
     crimenes.sort();
     crimenes.save(outputFileName);
+    
     
     return 0;
 }

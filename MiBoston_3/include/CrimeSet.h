@@ -321,7 +321,8 @@ public:
      */
     void sort();
     
-private:
+    private:
+        
     static const int INITIAL_CAPACITY = 8; ///< Default initial capacity for the dynamic array _crimes. Should be a number >= 0
 
     /**
