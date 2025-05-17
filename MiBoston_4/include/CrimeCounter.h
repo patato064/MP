@@ -94,15 +94,15 @@ public:
      * target geographical area. Input parameter
      */
     CrimeCounter(int nRows = DEFAULT_ROWS, int nColumns = DEFAULT_COLUMNS,
-            Coordinates  bottomLeftCoord = DEFAULT_COORD_BOTTOMLEFT, 
-            Coordinates  topRightCoord = DEFAULT_COORD_TOPRIGHT);
+            const Coordinates &  bottomLeftCoord = DEFAULT_COORD_BOTTOMLEFT, 
+            const Coordinates & topRightCoord = DEFAULT_COORD_TOPRIGHT);
 
     /**
      * @brief Copy constructor. Builds an exact copy of the provided 
      * object @p orig.
      * @param orig object used as source for the copy. Input parameter
      */
-    CrimeCounter(CrimeCounter orig);
+    CrimeCounter(const CrimeCounter & orig);
 
     /**
      * @brief Destructor
@@ -116,7 +116,7 @@ public:
      * Input parameter
      * @return A reference to this object
      */
-    CrimeCounter operator=(CrimeCounter orig);
+    CrimeCounter & operator=(const CrimeCounter & orig);
 
     /**
      * @brief Returns the numbers of rows of the frequency matrix in 
@@ -124,7 +124,7 @@ public:
      * Query method
      * @return The numbers of rows of the frequency matrix in this object
      */
-    int getNumRows();
+    int getNumRows() const;
 
     /**
      * @brief Returns the numbers of columns of the frequency matrix in 
@@ -132,7 +132,7 @@ public:
      * Query method
      * @return The numbers of columns of the frequency matrix in this object
      */
-    int getNumCols();
+    int getNumCols() const;
 
     /**
      * @brief Returns the bottom left corner (Coordinates) of the target
@@ -141,7 +141,7 @@ public:
      * @return Returns the bottom left corner (Coordinates) of the target
      * geographical area of this object. 
      */
-    Coordinates getLeftLocation();
+    Coordinates getLeftLocation() const;
 
     /**
      * @brief Returns the top right corner (Coordinates) of the target
@@ -150,7 +150,7 @@ public:
      * @return The top right corner (Coordinates)  of the target
      * geographical area of this object. 
      */
-    Coordinates getRightLocation();
+    Coordinates getRightLocation() const;
     
     /**
      * @brief Returns a string with the content of this object. 
@@ -166,7 +166,7 @@ public:
      * Query method
      * @return A string with the content of this object
      */
-    std::string toString();
+    std::string toString() const;
     
     /**
      * @brief Returns the maximum number of crimes (frequency) located in the
@@ -175,7 +175,7 @@ public:
      * @return the maximum frequency found in the 2D matrix. Returns 0 if the 
      * matrix has 0 rows and columns.
      */
-    int getMaxFrequency();
+    int getMaxFrequency() const;
 
     /**
      * @brief Returns the number of counted crimes, that is the sum of 
@@ -185,7 +185,7 @@ public:
      * Query method
      * @return the number of total crimes
      */
-    int getTotalLocated();
+    int getTotalLocated() const;
 
     /**
      * @brief Sets all values in the frequency matrix to 0. 
@@ -210,7 +210,7 @@ public:
      * @param frequency The quantity to add at the current frequency
      * of the corresponding grid cell. Input parameter
      */
-    void increaseFrequency(Crime crime, int frequency = 0);
+    void increaseFrequency(const Crime & crime, int frequency = 0);
 
     /**
      * @brief Calculates the frequencies of the crimes that can be  
@@ -224,7 +224,7 @@ public:
      * Modifier method
      * @param crimes A CrimeSet object. Input parameter
      */
-    void calculateFrequencies(CrimeSet crimes);
+    void calculateFrequencies(const CrimeSet & crimes);
     
     /**
      * @brief Saves the matrix of frequencies of this object as a 
@@ -282,13 +282,15 @@ public:
      * if the given file cannot be opened or if an error occurs while writing 
      * to the file.
      */
-    void saveAsPPMTextImage(std::string fileName, 
-        ColorPalette palette, std::string comment = "");
+    void saveAsPPMTextImage(const std::string & fileName, 
+        const ColorPalette & palette, const std::string & comment = "") const;
     
 private:
     
     // HACER allocate, deallocate y copy para luego hacer el constructor de copia, destructor, asignación...
-    
+    void allocate(int nRows, int nCols);
+    void deallocate();
+    void copy(const CrimeCounter &other);
     /**
      * Integer constant with the default number of rows in the matrix of 
      * frequencies

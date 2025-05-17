@@ -4,4 +4,18 @@
         <activeConfTypeElem>1</activeConfTypeElem>
         <activeConfIndexElem>0</activeConfIndexElem>
     </data>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/nestor/MP/Prácticas%20MP/MP/MiBoston_4/src/Crime.cpp</file>
+            <file>file:/home/nestor/MP/Prácticas%20MP/MP/MiBoston_4/include/Crime.h</file>
+            <file>file:/home/nestor/MP/Prácticas%20MP/MP/MiBoston_4/include/CrimeCounter.h</file>
+            <file>file:/home/nestor/MP/Prácticas%20MP/MP/MiBoston_4/include/CrimeSet.h</file>
+            <file>file:/home/nestor/MP/Prácticas%20MP/MP/MiBoston_4/src/CrimeSet.cpp</file>
+            <file>file:/home/nestor/MP/Prácticas%20MP/MP/MiBoston_4/include/Coordinates.h</file>
+            <file>file:/home/nestor/MP/Prácticas%20MP/MP/MiBoston_4/src/CrimeCounter.cpp</file>
+            <file>file:/home/nestor/MP/Prácticas%20MP/MP/MiBoston_4/src/Coordinates.cpp</file>
+            <file>file:/home/nestor/MP/Prácticas%20MP/MP/MiBoston_4/src/main.cpp</file>
+        </group>
+    </open-files>
 </project-private>

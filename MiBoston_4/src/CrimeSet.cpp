@@ -399,7 +399,7 @@ void CrimeSet::sort(){
     }
 
 // HACER METODO PARA COPIAR EL CONTENIDO DE UN OBJETO CRIMESET EN EL OBJETO IMPLICITO sin reservar ni 
-// liberar memoria. para que funcione nos tenemos que asegurar que el oi tiene un array dinamico del mismo tamaño que el objeto a copiar. para usar en el constructor de copia y operador de asignacion
+// liberar memoria. para que funcione nos tenemos que asegurar que el objeto implicito tiene un array dinamico del mismo tamaño que el objeto a copiar. para usar en el constructor de copia y operador de asignacion
     void CrimeSet::copy(const CrimeSet &original){
         
         if (original.getCapacity() <= this->getCapacity()){ // No se utiliza el clear porque libera memoria dinámica
